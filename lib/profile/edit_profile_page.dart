@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:konkuk_student_app/profile/profilemain.dart';
 import 'package:konkuk_student_app/profile/user.dart';
 import 'package:konkuk_student_app/profile/user_preferences.dart';
 import 'package:konkuk_student_app/profile/widget/appbar_widget.dart';

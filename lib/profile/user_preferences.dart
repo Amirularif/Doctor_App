@@ -3,16 +3,16 @@ import 'package:konkuk_student_app/profile/user.dart';
 class UserPreferences {
   static const myUser = User(
     imagePath:
-    'https://images.unsplash.com/photo-1625472603513-413fb94f8b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-    name: 'Amirul Arif',
-    email: 'amirul@gmail.com',
+    'https://cdn-offer-photos.zeusx.com/340d329c-73b0-4e2f-a4c3-9e52db154965.jpg',
+    name: 'Mona Megistus',
+    email: 'megistus@gmail.com',
     weight:
-    '56.5kg',
+    '40.5kg',
     age:
     '23',
     gender:
-    'Male',
+    'Female',
     fitbitToken:
-    'ABC123456',
+    'GNSHN2022',
   );
 }
