@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:konkuk_student_app/graph/FitHeart.dart';
 import 'package:konkuk_student_app/graph/FitSleep.dart';
 import 'package:konkuk_student_app/graph/FitStep.dart';
+import 'package:konkuk_student_app/graph/FitWeight.dart';
 import 'package:konkuk_student_app/graph/graph_cards.dart';
 import 'package:konkuk_student_app/profile/profilemain.dart';
 import 'package:konkuk_student_app/profile/user.dart';
@@ -120,10 +121,7 @@ class _DashboardState extends State<Dashboard> {
                             FitHeartGraph(token: user.fitbitToken),
                             FitStepGraph(token: user.fitbitToken),
                             FitSleepGraph(token: user.fitbitToken),
-                            GraphCards(
-                              title: 'Weight',
-                              description: 'graph/contents here',
-                            ),
+                            FitWeightGraph(token: user.fitbitToken),
                           ],
                       )
                   ),
