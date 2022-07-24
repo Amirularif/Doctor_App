@@ -92,7 +92,7 @@ class _FitSleepGraphState extends State<FitSleepGraph> {
         height: 220,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: Colors.grey.shade300,
+            color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(12)
         ),
         child: FutureBuilder(

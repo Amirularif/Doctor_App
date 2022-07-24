@@ -11,6 +11,7 @@ import 'package:konkuk_student_app/statistics/stats_page.dart';
 import 'package:konkuk_student_app/util/emoticons.dart';
 import 'package:konkuk_student_app/util/save_sucess.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:intl/intl.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -21,7 +22,18 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   User user = UserPreferences.myUser;
+  String date = '';
   
+  String dateinit(){
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd/MM/yyyy');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
+  void initState(){
+    date = dateinit();
+  }
 
   bool tappedDone = false;
 
@@ -59,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                           SizedBox(
                             height: 8,
                           ),
-                          Text('24 June, 2022',
+                          Text(date,
                           style: TextStyle(color: Colors.black87),
                         ),
                         ],
