@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
   smooth_page_indicator: ^1.0.0+2
+  syncfusion_flutter_charts: ^20.2.39
 
 dev_dependencies:
   flutter_test:

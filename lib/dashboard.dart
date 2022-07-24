@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:konkuk_student_app/graph/FitHeart.dart';
+import 'package:konkuk_student_app/graph/FitSleep.dart';
+import 'package:konkuk_student_app/graph/FitStep.dart';
 import 'package:konkuk_student_app/graph/graph_cards.dart';
 import 'package:konkuk_student_app/profile/profilemain.dart';
+import 'package:konkuk_student_app/profile/user.dart';
+import 'package:konkuk_student_app/profile/user_preferences.dart';
 import 'package:konkuk_student_app/statistics/stats_page.dart';
 import 'package:konkuk_student_app/util/emoticons.dart';
 import 'package:konkuk_student_app/util/save_sucess.dart';
@@ -14,6 +19,9 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  User user = UserPreferences.myUser;
+  
+
   bool tappedDone = false;
 
   //scroll controller
@@ -99,28 +107,19 @@ class _DashboardState extends State<Dashboard> {
                   ),
 
                   SizedBox(
-                    height: 25,
+                    height: 15,
                   ),
 
                   //fitbit
                   Container(
-                    height: 210,
+                    height: 220,
                       child: PageView(
                         scrollDirection: Axis.horizontal,
                           controller: _controller,
                           children: [
-                            GraphCards(
-                              title: 'Heart Rate',
-                              description: 'graph/contents here',
-                            ),
-                            GraphCards(
-                              title: 'Step Count',
-                              description: 'graph/contents here',
-                            ),
-                            GraphCards(
-                              title: 'Sleep Log',
-                              description: 'graph/contents here',
-                            ),
+                            FitHeartGraph(token: user.fitbitToken),
+                            FitStepGraph(token: user.fitbitToken),
+                            FitSleepGraph(token: user.fitbitToken),
                             GraphCards(
                               title: 'Weight',
                               description: 'graph/contents here',
