@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:konkuk_student_app/profile/edit_profile_page.dart';
+import 'package:konkuk_student_app/profile/user.dart';
+import 'package:konkuk_student_app/profile/user_preferences.dart';
 
-class NumbersWidget extends StatelessWidget {
+class NumbersWidget extends StatefulWidget {
+  const NumbersWidget({Key? key}) : super(key: key);
+
+  @override
+  State<NumbersWidget> createState() => _NumbersWidgetState();
+}
+
+class _NumbersWidgetState extends State<NumbersWidget> {
+  User user = UserPreferences.myUser;
+
   @override
   Widget build(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      buildButton(context, '48 kg', 'Weight'),
+      buildButton(context, user.weight, 'Weight'),
       buildDivider(),
-      buildButton(context, 'Male', 'Gender'),
+      buildButton(context, user.gender, 'Gender'),
       buildDivider(),
-      buildButton(context, '35', 'Age'),
+      buildButton(context, user.age, 'Age'),
     ],
   );
+
   Widget buildDivider() => Container(
     height: 24,
     child: VerticalDivider(),

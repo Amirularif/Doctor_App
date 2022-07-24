@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:konkuk_student_app/dashboard.dart';
-import 'package:konkuk_student_app/profile/user_preferences.dart';
 
 AppBar buildAppBar(BuildContext context) {
   return AppBar(

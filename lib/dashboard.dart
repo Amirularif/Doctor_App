@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:konkuk_student_app/graph/graph_cards.dart';
 import 'package:konkuk_student_app/profile/profilemain.dart';
+import 'package:konkuk_student_app/statistics/stats_page.dart';
 import 'package:konkuk_student_app/util/emoticons.dart';
 import 'package:konkuk_student_app/util/save_sucess.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -12,6 +15,10 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   bool tappedDone = false;
+
+  //scroll controller
+  final _controller = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,40 +103,49 @@ class _DashboardState extends State<Dashboard> {
                   ),
 
                   //fitbit
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Dashboard()),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          height: 200,
-                          width: 320,
-                          decoration: BoxDecoration(
-                              color: Colors.blue.shade100,
-                              borderRadius: BorderRadius.circular(12)
-                          ),
-                          padding: EdgeInsets.all(12),
-                          child: Center(
-                            child: Text(
-                              'Tempat Letak Graph',
-                              style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
+                  Container(
+                    height: 210,
+                      child: PageView(
+                        scrollDirection: Axis.horizontal,
+                          controller: _controller,
+                          children: [
+                            GraphCards(
+                              title: 'Heart Rate',
+                              description: 'graph/contents here',
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
+                            GraphCards(
+                              title: 'Step Count',
+                              description: 'graph/contents here',
+                            ),
+                            GraphCards(
+                              title: 'Sleep Log',
+                              description: 'graph/contents here',
+                            ),
+                            GraphCards(
+                              title: 'Weight',
+                              description: 'graph/contents here',
+                            ),
+                          ],
+                      )
                   ),
 
                   SizedBox(
-                    height: 25,
+                    height: 5,
+                  ),
+
+                  //scroll bar
+                  SmoothPageIndicator(
+                      controller: _controller,
+                      count: 4,
+                      effect: ExpandingDotsEffect(
+                        activeDotColor: Colors.grey.shade600,
+                        dotHeight: 5,
+                        dotWidth: 5,
+                      ),
+                  ),
+
+                  SizedBox(
+                    height: 20,
                   ),
 
                   //activity log title
@@ -321,7 +337,7 @@ class _DashboardState extends State<Dashboard> {
                     onTap: (){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Dashboard()),
+                        MaterialPageRoute(builder: (context) => StatsPage()),
                       );
                     },
                     child: Padding(
