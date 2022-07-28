@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:konkuk_student_app/graph/FitHeart.dart';
+import 'package:konkuk_student_app/graph/FitSleep.dart';
+import 'package:konkuk_student_app/graph/FitStep.dart';
+import 'package:konkuk_student_app/graph/FitWeight.dart';
 import 'package:konkuk_student_app/graph/graph_cards.dart';
 import 'package:konkuk_student_app/profile/profilemain.dart';
+import 'package:konkuk_student_app/profile/user.dart';
+import 'package:konkuk_student_app/profile/user_preferences.dart';
 import 'package:konkuk_student_app/statistics/stats_page.dart';
 import 'package:konkuk_student_app/util/emoticons.dart';
 import 'package:konkuk_student_app/util/save_sucess.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:intl/intl.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -14,6 +21,20 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  User user = UserPreferences.myUser;
+  String date = '';
+  
+  String dateinit(){
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd/MM/yyyy');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
+  void initState(){
+    date = dateinit();
+  }
+
   bool tappedDone = false;
 
   //scroll controller
@@ -50,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                           SizedBox(
                             height: 8,
                           ),
-                          Text('24 June, 2022',
+                          Text(date,
                           style: TextStyle(color: Colors.black87),
                         ),
                         ],
@@ -99,32 +120,20 @@ class _DashboardState extends State<Dashboard> {
                   ),
 
                   SizedBox(
-                    height: 25,
+                    height: 15,
                   ),
 
                   //fitbit
                   Container(
-                    height: 210,
+                    height: 220,
                       child: PageView(
                         scrollDirection: Axis.horizontal,
                           controller: _controller,
                           children: [
-                            GraphCards(
-                              title: 'Heart Rate',
-                              description: 'graph/contents here',
-                            ),
-                            GraphCards(
-                              title: 'Step Count',
-                              description: 'graph/contents here',
-                            ),
-                            GraphCards(
-                              title: 'Sleep Log',
-                              description: 'graph/contents here',
-                            ),
-                            GraphCards(
-                              title: 'Weight',
-                              description: 'graph/contents here',
-                            ),
+                            FitHeartGraph(token: user.fitbitToken),
+                            FitStepGraph(token: user.fitbitToken),
+                            FitSleepGraph(token: user.fitbitToken),
+                            FitWeightGraph(token: user.fitbitToken),
                           ],
                       )
                   ),

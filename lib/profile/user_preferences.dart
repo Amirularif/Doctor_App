@@ -13,6 +13,6 @@ class UserPreferences {
     gender:
     'Female',
     fitbitToken:
-    'GNSHN2022',
+    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzhIVkciLCJzdWIiOiI5WjdQNkYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyd2VpIHJociByYWN0IHJzbGUiLCJleHAiOjE2NTg4MzEzNTUsImlhdCI6MTY1ODMyOTEwNH0.z9KEJJOKx1JU6morNhl-9Ev9yEG6UVcSZXF7M0dsThs',
   );
 }
