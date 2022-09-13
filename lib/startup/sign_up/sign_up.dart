@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:konkuk_student_app/dashboard.dart';
+import 'package:Doctor_App/dashboard.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);

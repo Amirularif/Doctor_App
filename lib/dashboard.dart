@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:konkuk_student_app/graph/FitHeart.dart';
-import 'package:konkuk_student_app/graph/FitSleep.dart';
-import 'package:konkuk_student_app/graph/FitStep.dart';
-import 'package:konkuk_student_app/graph/FitWeight.dart';
-import 'package:konkuk_student_app/graph/graph_cards.dart';
-import 'package:konkuk_student_app/profile/profilemain.dart';
-import 'package:konkuk_student_app/profile/user.dart';
-import 'package:konkuk_student_app/profile/user_preferences.dart';
-import 'package:konkuk_student_app/statistics/stats_page.dart';
-import 'package:konkuk_student_app/util/emoticons.dart';
-import 'package:konkuk_student_app/util/save_sucess.dart';
+import 'package:Doctor_App/PatientListPage.dart';
+import 'package:Doctor_App/graph/FitHeart.dart';
+import 'package:Doctor_App/graph/FitSleep.dart';
+import 'package:Doctor_App/graph/FitStep.dart';
+import 'package:Doctor_App/graph/FitWeight.dart';
+import 'package:Doctor_App/graph/graph_cards.dart';
+import 'package:Doctor_App/profile/profilemain.dart';
+import 'package:Doctor_App/profile/user.dart';
+import 'package:Doctor_App/profile/user_preferences.dart';
+import 'package:Doctor_App/startup/login/login.dart';
+import 'package:Doctor_App/statistics/PatientInfoPage.dart';
+import 'package:Doctor_App/util/emoticons.dart';
+import 'package:Doctor_App/util/save_sucess.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:intl/intl.dart';
+import 'package:Doctor_App/statistics/stats_card.dart';
+import 'package:diamond_bottom_bar/diamond_bottom_bar.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'bottombar.dart';
+import 'graph/CompletionRate.dart';
+import 'graph/NumPatient.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -23,6 +32,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   User user = UserPreferences.myUser;
   String date = '';
+  int selectedindex = 0;
+  late Widget selectedWidget;
   
   String dateinit(){
     var now = new DateTime.now();
@@ -33,17 +44,68 @@ class _DashboardState extends State<Dashboard> {
 
   void initState(){
     date = dateinit();
+    selectedWidget = const Dashboard();
+    super.initState();
   }
 
   bool tappedDone = false;
 
   //scroll controller
-  final _controller = PageController();
+  late final _controller = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
+        bottomNavigationBar: BottomNavyBar(
+          selectedIndex: selectedindex,
+          showElevation: true,
+          itemCornerRadius: 24,
+          curve: Curves.easeIn,
+          onItemSelected: (index) => setState(() {
+            selectedindex = index;
+            print(index);
+            if (index == 0) {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => Dashboard()));
+            }else if (index == 1) {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PatientListPage()));
+            }else if (index == 2) {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PatientPage()));
+            }else if (index == 3) {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => LoginPage()));
+            }
+          }),
+          items: <BottomNavyBarItem>[
+            BottomNavyBarItem(
+              icon: Icon(Icons.apps),
+              title: Text('Home'),
+              activeColor: Colors.red,
+              textAlign: TextAlign.center,
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.people),
+              title: Text('Users'),
+              activeColor: Colors.purpleAccent,
+              textAlign: TextAlign.center,
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.settings),
+              title: Text('Settings'),
+              activeColor: Colors.blue,
+              textAlign: TextAlign.center,
+            ),
+            BottomNavyBarItem(
+              icon: Icon(Icons.logout),
+              title: Text('Logout'),
+              activeColor: Colors.pink,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -53,12 +115,12 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      //hi user!
+                      //TOP bar
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 8,
+                            height: 10,
                           ),
                           Text(
                             'Dashboard',
@@ -76,27 +138,6 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         ],
                       ),
-
-                      //profile
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ProfileMain()),
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.black54,
-                              borderRadius: BorderRadius.circular(12)
-                          ),
-                          padding: EdgeInsets.all(12),
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.grey.shade100,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
 
@@ -104,12 +145,11 @@ class _DashboardState extends State<Dashboard> {
                     height: 20,
                   ),
 
-                  //menu title
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Fitbit Data',
+                        'Patients',
                         style: TextStyle(
                           color: Colors.black87,
                           fontSize: 20,
@@ -117,265 +157,188 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                     ],
-                  ),
-
-                  SizedBox(
-                    height: 15,
-                  ),
-
-                  //fitbit
-                  Container(
-                    height: 220,
-                      child: PageView(
-                        scrollDirection: Axis.horizontal,
-                          controller: _controller,
-                          children: [
-                            FitHeartGraph(token: user.fitbitToken),
-                            FitStepGraph(token: user.fitbitToken),
-                            FitSleepGraph(token: user.fitbitToken),
-                            FitWeightGraph(token: user.fitbitToken),
-                          ],
-                      )
-                  ),
-
-                  SizedBox(
-                    height: 5,
-                  ),
-
-                  //scroll bar
-                  SmoothPageIndicator(
-                      controller: _controller,
-                      count: 4,
-                      effect: ExpandingDotsEffect(
-                        activeDotColor: Colors.grey.shade600,
-                        dotHeight: 5,
-                        dotWidth: 5,
-                      ),
-                  ),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  //activity log title
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Activity & Mood Log',
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  //activity log box
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.grey.shade300),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Input activity name here',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 15,
-                  ),
-
-                  //emoticons
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      //very calm
-                      Column(
-                        children: [
-                          Emoticons(
-                            emoticon: 'assets/emoticons/verycalm.png',
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Very Calm',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      //calm
-                      Column(
-                        children: [
-                          Emoticons(
-                            emoticon: 'assets/emoticons/calm.png',
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Calm',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      //neutral
-                      Column(
-                        children: [
-                          Emoticons(
-                            emoticon: 'assets/emoticons/neutral.png',
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Neutral',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      //stressed
-                      Column(
-                        children: [
-                          Emoticons(
-                            emoticon: 'assets/emoticons/stressed.png',
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Stressed',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      //very stressed
-                      Column(
-                        children: [
-                          Emoticons(
-                            emoticon: 'assets/emoticons/verystressed.png',
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Very Stressed',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 25,
-                  ),
-
-                  //input button
-                  GestureDetector(
-                    onTap: ()async {
-                      final action = await SaveSuccess.doneDialog(context, 'Success', 'Activity and mood successfully logged !');
-                      if(action == DialogsAction.done) {
-                        setState(() => tappedDone = true);
-                      } else {
-                        setState(() => tappedDone = false);
-                      }
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                      child: Container(
-                        padding: EdgeInsets.all(15.0),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Text('Log Data',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
 
                   SizedBox(
                     height: 10,
                   ),
 
-                  //stats page button
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => StatsPage()),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                      child: Container(
-                        padding: EdgeInsets.all(15.0),
-                        decoration: BoxDecoration(
-                          color: Colors.lightGreen.shade200,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Text('Statistics',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
+                  Container(
+                   height: 300,
+                   width: 360,
+                   decoration: BoxDecoration(
+                     color: Colors.grey.shade300,
+                     borderRadius: BorderRadius.circular(12)
+                   ),
+                   padding: EdgeInsets.all(10),
+                   child: ListView(
+                     children: [
+                       Row(
+                        children:[
+                          Column(
+                           children: [
+                             StatsCards(
+                               username: 'Name : 아미룰',
+                               age: 'Age : 23',
+                               gender: 'Gender : Male',
+                               fitbitID: 'fitbit ID : 20191',
+                               imgPath: 'assets/profile/toby.jpg',
+                               color: Colors.white70,
+                             ),
+                             StatsCards(
+                             username: 'Name : 하니',
+                             age: 'Age : 22',
+                             gender: 'Gender : Female',
+                             fitbitID: 'fitbit ID : 20192',
+                               imgPath: 'assets/profile/zendaya.jpg',
+                             color: Colors.white70,
+                           ),
+                             StatsCards(
+                               username: 'Name : 작완',
+                               age: 'Age : 24',
+                               gender: 'Gender : Male',
+                               fitbitID: 'fitbit ID : 20193',
+                               imgPath: 'assets/profile/tom.jpg',
+                               color: Colors.white70,
+                             ),
+                             StatsCards(
+                               username: 'Name : 홍길동',
+                               age: 'Age : 24',
+                               gender: 'Gender : Male',
+                               fitbitID: 'fitbit ID : 20193',
+                               imgPath: 'assets/profile/profile.jpg',
+                               color: Colors.white70,
+                             ),
+                             StatsCards(
+                               username: 'Name : 이길동',
+                               age: 'Age : 24',
+                               gender: 'Gender : Male',
+                               fitbitID: 'fitbit ID : 20193',
+                               imgPath: 'assets/profile/profile.jpg',
+                               color: Colors.white70,
+                             ),
+                           ],),
+                          SizedBox(
+                            width: 10,
                           ),
-                        ),
+                          Column(
+                             children:[
+                               StatsCards(
+                                 username: 'Name : 이길동',
+                                 age: 'Age : 24',
+                                 gender: 'Gender : Male',
+                                 fitbitID: 'fitbit ID : 20193',
+                                 imgPath: 'assets/profile/andrew.jpg',
+                                 color: Colors.white70,
+                               ),
+                               StatsCards(
+                                 username: 'Name : 홍길동',
+                                 age: 'Age : 24',
+                                 gender: 'Gender : Male',
+                                 fitbitID: 'fitbit ID : 20193',
+                                 imgPath: 'assets/profile/profile.jpg',
+                                 color: Colors.white70,
+                               ),
+                               StatsCards(
+                                 username: 'Name : 하니',
+                                 age: 'Age : 22',
+                                 gender: 'Gender : Female',
+                                 fitbitID: 'fitbit ID : 20192',
+                                 imgPath: 'assets/profile/profile.jpg',
+                                 color: Colors.white70,
+                               ),
+                               StatsCards(
+                                 username: 'Name : 작완',
+                                 age: 'Age : 24',
+                                 gender: 'Gender : Male',
+                                 fitbitID: 'fitbit ID : 20193',
+                                 imgPath: 'assets/profile/profile.jpg',
+                                 color: Colors.white70,
+                               ),
+                               StatsCards(
+                                 username: 'Name : 아미룰',
+                                 age: 'Age : 23',
+                                 gender: 'Gender : Male',
+                                 fitbitID: 'fitbit ID : 20191',
+                                 imgPath: 'assets/profile/profile.jpg',
+                                 color: Colors.white70,
+                               ),
+                              ],),
+                        ],),
+                        ],),
                       ),
-                    ),
+
+                  SizedBox(
+                    height: 20,
                   ),
 
-                ],
-              ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Information',
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                      height: 146,
+                      width: 360,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(12)
+                      ),
+                      child: PageView(
+                        scrollDirection: Axis.horizontal,
+                        controller: _controller,
+                        children: [
+                          PatientGraphPage(),
+                          SurveyGraphPage(),
+                        ],
+                      ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  //scroll bar
+                  SmoothPageIndicator(
+                    controller: _controller,
+                    count: 4,
+                    effect: ExpandingDotsEffect(
+                      activeDotColor: Colors.grey.shade600,
+                      dotHeight: 5,
+                      dotWidth: 5,
+                    ),
+                  ),
+                ],),
             ),
           ),
-        )
+        ),
     );
+  }
+  void onPressed(index) {
+    setState(() {
+      print(index);
+      selectedindex = index;
+      if (index == 0) {
+        selectedWidget = const Dashboard();
+        print("hai");
+      }else if (index == 1) {
+        selectedWidget = const PatientPage();
+        print("hai");
+      }else if (index == 2) {
+        selectedWidget = const Dashboard();
+      }else if (index == 3) {
+        selectedWidget = const LoginPage();
+      }
+    });
   }
 }
 

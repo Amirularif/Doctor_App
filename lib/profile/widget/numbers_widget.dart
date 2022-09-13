@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:konkuk_student_app/profile/edit_profile_page.dart';
-import 'package:konkuk_student_app/profile/user.dart';
-import 'package:konkuk_student_app/profile/user_preferences.dart';
+import 'package:Doctor_App/profile/edit_profile_page.dart';
+import 'package:Doctor_App/profile/user.dart';
+import 'package:Doctor_App/profile/user_preferences.dart';
 
 class NumbersWidget extends StatefulWidget {
   const NumbersWidget({Key? key}) : super(key: key);

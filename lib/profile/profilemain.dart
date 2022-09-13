@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:konkuk_student_app/profile/profile_page.dart';
-import 'package:konkuk_student_app/profile/user_preferences.dart';
+import 'package:Doctor_App/profile/profile_page.dart';
+import 'package:Doctor_App/profile/user_preferences.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

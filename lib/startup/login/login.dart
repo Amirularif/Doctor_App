@@ -1,13 +1,73 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:konkuk_student_app/dashboard.dart';
+import 'package:Doctor_App/PatientListPage.dart';
+import 'package:Doctor_App/dashboard.dart';
 
-class LoginPage extends StatelessWidget {
+import '../../statistics/PatientInfoPage.dart';
+
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  int selectedindex = 3;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
+      bottomNavigationBar: BottomNavyBar(
+        selectedIndex: selectedindex,
+        showElevation: true,
+        itemCornerRadius: 24,
+        curve: Curves.easeIn,
+        onItemSelected: (index) => setState(() {
+          selectedindex = index;
+          print(index);
+          if (index == 0) {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => Dashboard()));
+          }else if (index == 1) {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => PatientListPage()));
+          }else if (index == 2) {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => Dashboard()));
+          }else if (index == 3) {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => LoginPage()));
+          }
+        }),
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: Icon(Icons.apps),
+            title: Text('Home'),
+            activeColor: Colors.red,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.people),
+            title: Text('Users'),
+            activeColor: Colors.purpleAccent,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.settings),
+            title: Text('Settings'),
+            activeColor: Colors.blue,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.logout),
+            title: Text('Logout'),
+            activeColor: Colors.pink,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(

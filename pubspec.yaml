@@ -1,4 +1,4 @@
-name: konkuk_student_app
+name: Doctor_App
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -37,8 +37,13 @@ dependencies:
   google_fonts: ^3.0.1
   smooth_page_indicator: ^1.0.0+2
   syncfusion_flutter_charts: ^20.2.39
+  percent_indicator: ^4.0.1
+  diamond_bottom_bar: ^1.0.0
+  bottom_navy_bar: ^6.0.0
+
 
 dev_dependencies:
+  change_app_package_name: ^1.1.0
   flutter_test:
     sdk: flutter
 
@@ -64,6 +69,7 @@ flutter:
   assets:
      - assets/
      - assets/emoticons/
+     - assets/profile/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

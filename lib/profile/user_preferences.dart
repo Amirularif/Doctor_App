@@ -1,4 +1,4 @@
-import 'package:konkuk_student_app/profile/user.dart';
+import 'package:Doctor_App/profile/user.dart';
 
 class UserPreferences {
   static const myUser = User(

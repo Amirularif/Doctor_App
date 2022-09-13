@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:konkuk_student_app/profile/user.dart';
-import 'package:konkuk_student_app/profile/user_preferences.dart';
-import 'package:konkuk_student_app/profile/widget/appbar_widget.dart';
-import 'package:konkuk_student_app/profile/widget/profilepicture_widget.dart';
-import 'package:konkuk_student_app/profile/widget/save_confirmation.dart';
-import 'package:konkuk_student_app/profile/widget/textfield_widget.dart';
+import 'package:Doctor_App/profile/user.dart';
+import 'package:Doctor_App/profile/user_preferences.dart';
+import 'package:Doctor_App/profile/widget/appbar_widget.dart';
+import 'package:Doctor_App/profile/widget/profilepicture_widget.dart';
+import 'package:Doctor_App/profile/widget/save_confirmation.dart';
+import 'package:Doctor_App/profile/widget/textfield_widget.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);

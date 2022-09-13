@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:Doctor_App/statistics/PatientInfoPage.dart';
+import '../profile/profilemain.dart';
 
 class StatsCards extends StatefulWidget {
-  final String activity;
-  final String mood;
-  final String date;
-  final String time;
+  final String username;
+  final String age;
+  final String gender;
+  final String fitbitID;
+  final String imgPath;
   final color;
 
   const StatsCards({
     Key? key,
-    required this.activity,
-    required this.mood,
-    required this.date,
-    required this.time,
+    required this.username,
+    required this.age,
+    required this.gender,
+    required this.fitbitID,
+    required this.imgPath,
     required this.color
   }) : super(key: key);
 
@@ -25,51 +29,83 @@ class _StatsCardsState extends State<StatsCards> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Container(
-        width: 320,
-        height: 130,
-        padding: EdgeInsets.all(25),
-        decoration: BoxDecoration(
-            color: widget.color,
-            borderRadius: BorderRadius.circular(12)
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //activity
-            Text(
-              widget.activity,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold
-              ),),
-            //mood
-            Text(
-              widget.mood,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold
-              ),),
-            SizedBox(
-              height: 5,
+      child: GestureDetector(
+        onTap: (){
+          Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PatientPage()),
+        );
+        },
+        child: Container(
+          width: 150,
+          height: 70,
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1.5,
+                  blurRadius: 2.0)
+            ],
+          ),
+          child : Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+            GestureDetector(
+              onTap: (){
+              },
+                child: Hero(tag: widget.imgPath,
+                    child: Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                                image: AssetImage(widget.imgPath),
+                                fit: BoxFit.cover)))),
+
             ),
-            //date
-            Text(
-              widget.date,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontStyle: FontStyle.italic
-              ),),
-            //time
-            Text(
-              widget.time,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontStyle: FontStyle.italic
-              ),),
+              SizedBox(
+                width: 12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //activity
+                  Text(
+                    widget.username,
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold
+                    ),),
+                  //mood
+                  Text(
+                    widget.age,
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 9,
+                    ),),
+                  //date
+                  Text(
+                    widget.gender,
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 9,
+                    ),),
+                  //time
+                  Text(
+                    widget.fitbitID,
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 9,
+                    ),),
+                ],
+              ),
           ],
+          ),
         ),
       ),
     );
