@@ -1,6 +1,6 @@
-# konkuk_student_app
+# Doctor App
 
-A new Flutter project.
+Konkuk University 2nd Semester Final Year Project.
 
 ## Getting Started
 
