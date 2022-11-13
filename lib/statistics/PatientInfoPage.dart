@@ -123,103 +123,210 @@ class _PatientPageState extends State<PatientPage> {
                           SizedBox(
                             height: 8,
                           ),
-                          Container(
-                            height: 140,
-                            width: 325,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
-                                borderRadius: BorderRadius.circular(12)
-                            ),
-                            padding: EdgeInsets.all(10.0),
-                              child : Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                    onTap: (){
-                                    },
-                                    child: Container(
-                                        height: 90,
-                                        width: 90,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(12),
-                                            image: DecorationImage(
-                                                image: AssetImage('assets/profile/toby.jpg'),
-                                                fit: BoxFit.cover)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 140,
+                                width: 325,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(12)
+                                ),
+                                padding: EdgeInsets.all(10.0),
+                                child : Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                        onTap: (){
+                                        },
+                                        child: Container(
+                                            height: 90,
+                                            width: 90,
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(12),
+                                                image: const DecorationImage(
+                                                    image: AssetImage('assets/profile/telur.jpg'),
+                                                    fit: BoxFit.cover)
+                                            )
                                         )
-                                    )
-                                  ),
+                                    ),
 
-                                  SizedBox(
-                                    width: 12,
-                                  ),
+                                    SizedBox(
+                                      width: 12,
+                                    ),
 
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 12,
-                                      ),
-                                      //name
-                                      Text('홍길동',
-                                        style: TextStyle(
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        //name
+                                        Text('Nik Amir',
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold
+                                          ),),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        //age
+                                        Text('Age        : 23',
+                                          style: TextStyle(
                                             color: Colors.black87,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold
-                                        ),),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      //age
-                                      Text('Age        : 23',
-                                        style: TextStyle(
-                                          color: Colors.black87,
-                                          fontSize: 13,
-                                        ),),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      //gender
-                                      Text('Gender  : Male',
-                                        style: TextStyle(
-                                          color: Colors.black87,
-                                          fontSize: 13,
-                                        ),),
-                                      SizedBox(
-                                        height: 4,
-                                      ),
-                                      //fitbit ID
-                                      Text('Fitbit ID : 2476374753456',
-                                        style: TextStyle(
-                                          color: Colors.black87,
-                                          fontSize: 13,
-                                        ),),
-                                    ],
+                                            fontSize: 13,
+                                          ),),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        //gender
+                                        Text('Gender  : Male',
+                                          style: TextStyle(
+                                            color: Colors.black87,
+                                            fontSize: 13,
+                                          ),),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        //fitbit ID
+                                        Text('Fitbit ID : 20191652398',
+                                          style: TextStyle(
+                                            color: Colors.black87,
+                                            fontSize: 13,
+                                          ),),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
+                                        ),
+                                        IconButton(onPressed: (){},
+                                            icon : Icon(Icons.message),
+                                            color: Colors.grey,
+                                            iconSize: 20),
+                                        SizedBox(
+                                          height: 1,
+                                        ),
+                                        IconButton(onPressed: (){},
+                                            icon : Icon(Icons.call),
+                                            color: Colors.grey,
+                                            iconSize: 20),
+                                      ],
+                                    )
+                                  ],
+                                )
+                            ),
+                              SizedBox(width: 20,),
+
+                              Container(
+                                height: 140,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12)
+                                ),
+                                padding: EdgeInsets.all(5.0),
+
+                                child :CircularPercentIndicator(
+                                  radius: 40.0,
+                                  lineWidth: 7.0,
+                                  animation: true,
+                                  percent: 0.55,
+                                  center: new Text(
+                                    "55.0%",
+                                    style:
+                                    new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
                                   ),
-                                  SizedBox(
-                                    width: 5,
+                                  linearGradient: LinearGradient(
+                                    begin: Alignment.topRight,end:Alignment.bottomLeft,
+                                    colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
                                   ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        height: 12,
-                                      ),
-                                      IconButton(onPressed: (){},
-                                          icon : Icon(Icons.message),
-                                          color: Colors.grey,
-                                          iconSize: 20),
-                                      SizedBox(
-                                        height: 1,
-                                      ),
-                                      IconButton(onPressed: (){},
-                                          icon : Icon(Icons.call),
-                                          color: Colors.grey,
-                                          iconSize: 20),
-                                    ],
-                                  )
-                                ],
-                              )
-                          )
+                                  footer: new Text(
+                                    "\nGAD-7 완성률 ",
+                                    style:
+                                    new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
+                                  ),
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  rotateLinearGradient: true,
+                                ),
+                              ),
+                              SizedBox(width: 20,),
+
+                              Container(
+                                height: 140,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12)
+                                ),
+                                padding: EdgeInsets.all(10.0),
+                                child: CircularPercentIndicator(
+                                  radius: 40.0,
+                                  lineWidth: 7.0,
+                                  animation: true,
+                                  percent: 0.3,
+                                  center: new Text(
+                                    "25.0%",
+                                    style:
+                                    new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
+                                  ),
+                                  linearGradient: LinearGradient(
+                                    begin: Alignment.topRight,end:Alignment.bottomLeft,
+                                    colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
+                                  ),
+                                  footer: new Text(
+                                    "\n학생 조사 완성률 ",
+                                    style:
+                                    new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
+                                  ),
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  rotateLinearGradient: true,
+                                ),
+                              ),
+                              SizedBox(width: 20,),
+
+                              Container(
+                                height: 140,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12)
+                                ),
+                                padding: EdgeInsets.all(10.0),
+                                child: CircularPercentIndicator(
+                                  radius: 40.0,
+                                  lineWidth: 7.0,
+                                  animation: true,
+                                  percent: 0.8,
+                                  center: new Text(
+                                    "85.0%",
+                                    style:
+                                    new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
+                                  ),
+                                  linearGradient: LinearGradient(
+                                    begin: Alignment.topRight,end:Alignment.bottomLeft,
+                                    colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
+                                  ),
+                                  footer: new Text(
+                                    "\n라이프로그 ",
+                                    style:
+                                    new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
+                                  ),
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  rotateLinearGradient: true,
+                                ),
+                              ),
+                              SizedBox(width: 20,),
+                            ],
+                          ),
+
                         ],
                       ),
                     ],
@@ -249,7 +356,7 @@ class _PatientPageState extends State<PatientPage> {
 
                   //fitbit
                   Container(
-                      height: 200,
+                      height: 360,
                       child: PageView(
                         scrollDirection: Axis.horizontal,
                         controller: _controller,
@@ -280,107 +387,7 @@ class _PatientPageState extends State<PatientPage> {
                     height: 20,
                   ),
                   //widget
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 140,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12)
-                        ),
-                        padding: EdgeInsets.all(5.0),
 
-                        child :CircularPercentIndicator(
-                          radius: 40.0,
-                          lineWidth: 7.0,
-                          animation: true,
-                          percent: 0.55,
-                          center: new Text(
-                            "55.0%",
-                            style:
-                            new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          linearGradient: LinearGradient(
-                            begin: Alignment.topRight,end:Alignment.bottomLeft,
-                            colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
-                          ),
-                          footer: new Text(
-                            "\nGAD-7 완성률 ",
-                            style:
-                            new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
-                          ),
-                          circularStrokeCap: CircularStrokeCap.round,
-                          rotateLinearGradient: true,
-                        ),
-                      ),
-
-                      Container(
-                        height: 140,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12)
-                        ),
-                        padding: EdgeInsets.all(10.0),
-                        child: CircularPercentIndicator(
-                          radius: 40.0,
-                          lineWidth: 7.0,
-                          animation: true,
-                          percent: 0.3,
-                          center: new Text(
-                            "25.0%",
-                            style:
-                            new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          linearGradient: LinearGradient(
-                            begin: Alignment.topRight,end:Alignment.bottomLeft,
-                            colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
-                          ),
-                          footer: new Text(
-                            "\n학생 조사 완성률 ",
-                            style:
-                            new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
-                          ),
-                          circularStrokeCap: CircularStrokeCap.round,
-                          rotateLinearGradient: true,
-                        ),
-                      ),
-
-                      Container(
-                        height: 140,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12)
-                        ),
-                        padding: EdgeInsets.all(10.0),
-                        child: CircularPercentIndicator(
-                          radius: 40.0,
-                          lineWidth: 7.0,
-                          animation: true,
-                          percent: 0.8,
-                          center: new Text(
-                            "85.0%",
-                            style:
-                            new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                          linearGradient: LinearGradient(
-                            begin: Alignment.topRight,end:Alignment.bottomLeft,
-                            colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
-                          ),
-                          footer: new Text(
-                            "\n라이프로그 ",
-                            style:
-                            new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
-                          ),
-                          circularStrokeCap: CircularStrokeCap.round,
-                          rotateLinearGradient: true,
-                        ),
-                      )
-                    ],
-                  ),
                 ],
               ),
             ),

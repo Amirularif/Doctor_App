@@ -1,7 +1,7 @@
 import 'package:Doctor_App/statistics/DBStats_Card.dart';
 import 'package:flutter/material.dart';
 import 'package:Doctor_App/PatientListPage.dart';
-import 'package:Doctor_App/profile/user.dart';
+//import 'package:Doctor_App/profile/user.dart';
 import 'package:Doctor_App/profile/user_preferences.dart';
 import 'package:Doctor_App/startup/login/login.dart';
 import 'package:Doctor_App/statistics/PatientInfoPage.dart';
@@ -11,6 +11,7 @@ import 'package:Doctor_App/statistics/stats_card.dart';
 import 'package:diamond_bottom_bar/diamond_bottom_bar.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'ServerDB/DBProfile.dart';
+import 'ServerDB/DBUser.dart';
 import 'ServerDB/DBUserDoc.dart';
 import 'bottombar.dart';
 import 'graph/CompletionRate.dart';
@@ -25,7 +26,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  User user = UserPreferences.myUser;
   String date = '';
   int selectedindex = 0;
   late Widget selectedWidget;
@@ -51,6 +51,14 @@ class _DashboardState extends State<Dashboard> {
   //DB connector
   var DocProfile;
   var DocList;
+
+  var pList1;
+  var pList2;
+  var pList3;
+
+  var User1;
+  var User2;
+  var User3;
   Future DataLoad() async {
     DocList = await ProfileData.connect("D2001");
     DocProfile = DocUser(
@@ -63,6 +71,49 @@ class _DashboardState extends State<Dashboard> {
         Patient2:DocList[0]["Patient2"],
         Patient3:DocList[0]["Patient3"],
     );
+
+    /*
+    pList1 = await ProfileData.connect(DocProfile.Patient1);
+    User1 = User(
+      Uid: pList1[0]["Uid"],
+      Name: pList1[0]["Name"],
+      Gender: pList1[0]["Gender"],
+      Weight: pList1[0]["Weight"],
+      Age: pList1[0]["Age"],
+      Reg: pList1[0]["Reg"],
+      Email: pList1[0]["Email"],
+      Phone: pList1[0]["Phone"],
+      Token: pList1[0]["Token"],
+      Image: pList1[0]["Image"],
+    );*/
+    pList2 = await ProfileData.connect("P1002");
+    User2 = User(
+      Uid: pList2[0]["Uid"],
+      Name: pList2[0]["Name"],
+      Gender: pList2[0]["Gender"],
+      Weight: pList2[0]["Weight"],
+      Age: pList2[0]["Age"],
+      Reg: pList2[0]["Reg"],
+      Email: pList2[0]["Email"],
+      Phone: pList2[0]["Phone"],
+      Token: pList2[0]["Token"],
+      Image: pList2[0]["Image"],
+    );
+    pList3 = await ProfileData.connect(DocProfile.Patient3);
+    User3 = User(
+      Uid: pList3[0]["Uid"],
+      Name: pList3[0]["Name"],
+      Gender: pList3[0]["Gender"],
+      Weight: pList3[0]["Weight"],
+      Age: pList3[0]["Age"],
+      Reg: pList3[0]["Reg"],
+      Email: pList3[0]["Email"],
+      Phone: pList3[0]["Phone"],
+      Token: pList3[0]["Token"],
+      Image: pList3[0]["Image"],
+    );
+
+
   }
 
   @override
@@ -182,26 +233,51 @@ class _DashboardState extends State<Dashboard> {
 
                           Container(
                             height: 300,
-                            width: 360,
+                            width: 1200,
                             decoration: BoxDecoration(
                                 color: Colors.grey.shade300,
                                 borderRadius: BorderRadius.circular(12)
                             ),
-                            padding: EdgeInsets.all(10),
+                            padding: EdgeInsets.all(20),
                             child: ListView(
                               children: [
-                                Row(
+                                Column(
                                   children:[
-                                    Column(
+                                    Row(
+                                      //mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        DBStatsCards(
-                                          Uid: DocProfile.Patient1
+                                        StatsCards(
+                                          username: "Nik Amir",
+                                          age: 'Age : 23',
+                                          gender: 'Gender : Male',
+                                          fitbitID: 'fitbit ID : 652398',
+                                          imgPath: 'assets/profile/telur.jpg',
+                                          color: Colors.white70,
                                         ),
-                                        DBStatsCards(
-                                            Uid: DocProfile.Patient2
+                                        SizedBox(
+                                          width: 10,
                                         ),
-                                        DBStatsCards(
-                                            Uid: DocProfile.Patient3
+                                        StatsCards(
+                                          username: "Amirul Arif",
+                                          age: 'Age : 23' ,
+                                          gender: 'Gender : Male' ,
+                                          fitbitID: 'fitbit ID : 234687',
+                                          imgPath: 'assets/profile/pfpnana.png',
+                                          color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        StatsCards(
+                                          username: "Hani Qamaliah",
+                                          age: 'Age : 23',
+                                          gender: 'Gender : Female',
+                                          fitbitID: 'fitbit ID : 907632',
+                                          imgPath: 'assets/profile/pfphani.jpg',
+                                          color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
                                         ),
                                         StatsCards(
                                           username: 'Name : 홍길동',
@@ -211,19 +287,14 @@ class _DashboardState extends State<Dashboard> {
                                           imgPath: 'assets/profile/profile.jpg',
                                           color: Colors.white70,
                                         ),
-                                        StatsCards(
-                                          username: 'Name : 이길동',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/profile.jpg',
-                                          color: Colors.white70,
+                                        SizedBox(
+                                          width: 10,
                                         ),
                                       ],),
                                     SizedBox(
                                       width: 10,
                                     ),
-                                    Column(
+                                    Row(
                                       children:[
                                         StatsCards(
                                           username: 'Name : 이길동',
@@ -233,6 +304,9 @@ class _DashboardState extends State<Dashboard> {
                                           imgPath: 'assets/profile/andrew.jpg',
                                           color: Colors.white70,
                                         ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
                                         StatsCards(
                                           username: 'Name : 홍길동',
                                           age: 'Age : 24',
@@ -240,6 +314,9 @@ class _DashboardState extends State<Dashboard> {
                                           fitbitID: 'fitbit ID : 20193',
                                           imgPath: 'assets/profile/toby.jpg',
                                           color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
                                         ),
                                         StatsCards(
                                           username: 'Name : 하니',
@@ -249,6 +326,9 @@ class _DashboardState extends State<Dashboard> {
                                           imgPath: 'assets/profile/tom.jpg',
                                           color: Colors.white70,
                                         ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
                                         StatsCards(
                                           username: 'Name : 작완',
                                           age: 'Age : 24',
@@ -257,13 +337,58 @@ class _DashboardState extends State<Dashboard> {
                                           imgPath: 'assets/profile/profile.jpg',
                                           color: Colors.white70,
                                         ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                      ],),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Row(
+                                      children:[
                                         StatsCards(
-                                          username: 'Name : 아미룰',
-                                          age: 'Age : 23',
+                                          username: 'Name : 이길동',
+                                          age: 'Age : 24',
                                           gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20191',
+                                          fitbitID: 'fitbit ID : 20193',
                                           imgPath: 'assets/profile/profile.jpg',
                                           color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        StatsCards(
+                                          username: 'Name : 홍길동',
+                                          age: 'Age : 24',
+                                          gender: 'Gender : Male',
+                                          fitbitID: 'fitbit ID : 20193',
+                                          imgPath: 'assets/profile/profile.jpg',
+                                          color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        StatsCards(
+                                          username: 'Name : 하니',
+                                          age: 'Age : 22',
+                                          gender: 'Gender : Female',
+                                          fitbitID: 'fitbit ID : 20192',
+                                          imgPath: 'assets/profile/profile.jpg',
+                                          color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        StatsCards(
+                                          username: 'Name : 작완',
+                                          age: 'Age : 24',
+                                          gender: 'Gender : Male',
+                                          fitbitID: 'fitbit ID : 20193',
+                                          imgPath: 'assets/profile/profile.jpg',
+                                          color: Colors.white70,
+                                        ),
+                                        SizedBox(
+                                          width: 10,
                                         ),
                                       ],),
                                   ],),
@@ -292,7 +417,7 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           Container(
                             height: 146,
-                            width: 360,
+                            width: 1260,
                             decoration: BoxDecoration(
                                 color: Colors.grey.shade300,
                                 borderRadius: BorderRadius.circular(12)

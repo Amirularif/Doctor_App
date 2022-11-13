@@ -82,7 +82,7 @@ class _DBStatsCardsState extends State<DBStatsCards> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
                                       image: DecorationImage(
-                                          image: AssetImage(userProf.Image),
+                                          image: AssetImage('assets/profile/profile.jpg'),
                                           fit: BoxFit.cover)))),
 
                         ),

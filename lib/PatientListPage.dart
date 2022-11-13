@@ -28,17 +28,17 @@ class PatientListPage extends StatefulWidget {
 class _PatientListPageState extends State<PatientListPage> {
   List<Patient> users = [
     const Patient(
-        name: '아미룰',
-        fitbitid: '20191235689',
-        imgpath: 'assets/profile/toby.jpg'),
+        name: 'Nik Amir',
+        fitbitid: '20191652398',
+        imgpath: 'assets/profile/telur.jpg'),
     const Patient(
-        name: '하니',
+        name: 'Amirul Arif',
         fitbitid: '20191234687',
-        imgpath: 'assets/profile/zendaya.jpg'),
+        imgpath: 'assets/profile/pfpnana.png'),
     const Patient(
-        name: '작완',
+        name: 'Hani Qamaliah',
         fitbitid: '20191907632',
-        imgpath: 'assets/profile/andrew.jpg'),
+        imgpath: 'assets/profile/pfphani.jpg'),
     const Patient(
         name: '홍길동',
         fitbitid: '20191652398',
@@ -46,11 +46,15 @@ class _PatientListPageState extends State<PatientListPage> {
     const Patient(
         name: '이길동',
         fitbitid: '20191235689',
+        imgpath: 'assets/profile/andrew.jpg'),
+    const Patient(
+        name: '홍길동',
+        fitbitid: '20191652398',
         imgpath: 'assets/profile/tom.jpg'),
     const Patient(
         name: '하니',
         fitbitid: '20191234687',
-        imgpath: 'assets/profile/profile.jpg'),
+        imgpath: 'assets/profile/toby.jpg'),
     const Patient(
         name: '작완',
         fitbitid: '20191907632',
@@ -58,6 +62,14 @@ class _PatientListPageState extends State<PatientListPage> {
     const Patient(
         name: '홍길동',
         fitbitid: '20191652398',
+        imgpath: 'assets/profile/profile.jpg'),
+    const Patient(
+        name: '이길동',
+        fitbitid: '20191235689',
+        imgpath: 'assets/profile/profile.jpg'),
+    const Patient(
+        name: '아미룰',
+        fitbitid: '20191235689',
         imgpath: 'assets/profile/profile.jpg'),
   ];
   int selectedindex = 1;
@@ -121,7 +133,7 @@ class _PatientListPageState extends State<PatientListPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(20.0),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -140,8 +152,8 @@ class _PatientListPageState extends State<PatientListPage> {
                         height: 3,
                       ),
                     Container(
-                        height: 570,
-                        width: 400,
+                        height: 650,
+                        width: 1260,
                         decoration: BoxDecoration(
                             color: Colors.grey.shade100,
                             borderRadius: BorderRadius.circular(12)
