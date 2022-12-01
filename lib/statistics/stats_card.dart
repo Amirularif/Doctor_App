@@ -37,8 +37,8 @@ class _StatsCardsState extends State<StatsCards> {
         );
         },
         child: Container(
-          width: 150,
-          height: 70,
+          width: 280,
+          height: 100,
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
               color: Colors.white,
@@ -58,8 +58,8 @@ class _StatsCardsState extends State<StatsCards> {
               },
                 child: Hero(tag: widget.imgPath,
                     child: Container(
-                        height: 50,
-                        width: 50,
+                        height: 100,
+                        width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(

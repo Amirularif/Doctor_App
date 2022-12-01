@@ -1,3 +1,4 @@
+import 'package:Doctor_App/ChatPage.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:Doctor_App/graph/FitHeart.dart';
@@ -79,7 +80,7 @@ class _PatientListPageState extends State<PatientListPage> {
               print(index);
               if (index == 0) {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Dashboard()));
+                    MaterialPageRoute(builder: (context) => HomePage()));
               }else if (index == 1) {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => PatientListPage()));
@@ -141,7 +142,7 @@ class _PatientListPageState extends State<PatientListPage> {
                       ),
                     Container(
                         height: 570,
-                        width: 400,
+                        width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             color: Colors.grey.shade100,
                             borderRadius: BorderRadius.circular(12)

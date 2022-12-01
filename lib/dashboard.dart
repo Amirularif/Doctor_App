@@ -165,7 +165,7 @@ class _DashboardState extends State<Dashboard> {
 
                   Container(
                    height: 300,
-                   width: 360,
+                   width: 1200,
                    decoration: BoxDecoration(
                      color: Colors.grey.shade300,
                      borderRadius: BorderRadius.circular(12)
@@ -173,9 +173,9 @@ class _DashboardState extends State<Dashboard> {
                    padding: EdgeInsets.all(10),
                    child: ListView(
                      children: [
-                       Row(
+                       Column(
                         children:[
-                          Column(
+                          Row(
                            children: [
                              StatsCards(
                                username: 'Name : 아미룰',
@@ -185,6 +185,9 @@ class _DashboardState extends State<Dashboard> {
                                imgPath: 'assets/profile/toby.jpg',
                                color: Colors.white70,
                              ),
+                             SizedBox(
+                               width: 10,
+                             ),
                              StatsCards(
                              username: 'Name : 하니',
                              age: 'Age : 22',
@@ -193,6 +196,9 @@ class _DashboardState extends State<Dashboard> {
                                imgPath: 'assets/profile/zendaya.jpg',
                              color: Colors.white70,
                            ),
+                             SizedBox(
+                               width: 10,
+                             ),
                              StatsCards(
                                username: 'Name : 작완',
                                age: 'Age : 24',
@@ -201,27 +207,22 @@ class _DashboardState extends State<Dashboard> {
                                imgPath: 'assets/profile/tom.jpg',
                                color: Colors.white70,
                              ),
-                             StatsCards(
-                               username: 'Name : 홍길동',
-                               age: 'Age : 24',
-                               gender: 'Gender : Male',
-                               fitbitID: 'fitbit ID : 20193',
-                               imgPath: 'assets/profile/profile.jpg',
-                               color: Colors.white70,
+                             SizedBox(
+                               width: 10,
                              ),
                              StatsCards(
-                               username: 'Name : 이길동',
-                               age: 'Age : 24',
+                               username: 'Name : 아미룰',
+                               age: 'Age : 23',
                                gender: 'Gender : Male',
-                               fitbitID: 'fitbit ID : 20193',
+                               fitbitID: 'fitbit ID : 20191',
                                imgPath: 'assets/profile/profile.jpg',
                                color: Colors.white70,
                              ),
                            ],),
                           SizedBox(
-                            width: 10,
+                            height: 10,
                           ),
-                          Column(
+                          Row(
                              children:[
                                StatsCards(
                                  username: 'Name : 이길동',
@@ -231,6 +232,9 @@ class _DashboardState extends State<Dashboard> {
                                  imgPath: 'assets/profile/andrew.jpg',
                                  color: Colors.white70,
                                ),
+                               SizedBox(
+                                 width: 10,
+                               ),
                                StatsCards(
                                  username: 'Name : 홍길동',
                                  age: 'Age : 24',
@@ -238,6 +242,9 @@ class _DashboardState extends State<Dashboard> {
                                  fitbitID: 'fitbit ID : 20193',
                                  imgPath: 'assets/profile/profile.jpg',
                                  color: Colors.white70,
+                               ),
+                               SizedBox(
+                                 width: 10,
                                ),
                                StatsCards(
                                  username: 'Name : 하니',
@@ -247,6 +254,9 @@ class _DashboardState extends State<Dashboard> {
                                  imgPath: 'assets/profile/profile.jpg',
                                  color: Colors.white70,
                                ),
+                               SizedBox(
+                                 width: 10,
+                               ),
                                StatsCards(
                                  username: 'Name : 작완',
                                  age: 'Age : 24',
@@ -255,15 +265,55 @@ class _DashboardState extends State<Dashboard> {
                                  imgPath: 'assets/profile/profile.jpg',
                                  color: Colors.white70,
                                ),
-                               StatsCards(
-                                 username: 'Name : 아미룰',
-                                 age: 'Age : 23',
-                                 gender: 'Gender : Male',
-                                 fitbitID: 'fitbit ID : 20191',
-                                 imgPath: 'assets/profile/profile.jpg',
-                                 color: Colors.white70,
-                               ),
                               ],),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              StatsCards(
+                                username: 'Name : 이길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              StatsCards(
+                                username: 'Name : 홍길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              StatsCards(
+                                username: 'Name : 이길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              StatsCards(
+                                username: 'Name : 홍길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                            ],
+                          )
                         ],),
                         ],),
                       ),
@@ -290,7 +340,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Container(
                       height: 146,
-                      width: 360,
+                      width: 1260,
                       decoration: BoxDecoration(
                           color: Colors.grey.shade300,
                           borderRadius: BorderRadius.circular(12)

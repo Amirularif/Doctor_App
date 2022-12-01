@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:Doctor_App/bottombar.dart';
 import 'package:Doctor_App/dashboard.dart';
 import 'package:Doctor_App/statistics/PatientInfoPage.dart';
+import 'ChatPage.dart';
 import 'PatientListPage.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PatientPage(),
+      home: HomePage(),
     );
   }
 }
