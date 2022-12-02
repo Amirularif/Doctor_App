@@ -27,6 +27,7 @@ class PatientListPage extends StatefulWidget {
 }
 
 class _PatientListPageState extends State<PatientListPage> {
+  String date = '';
   List<Patient> users = [
     const Patient(
         name: '아미룰',
@@ -61,9 +62,17 @@ class _PatientListPageState extends State<PatientListPage> {
         fitbitid: '20191652398',
         imgpath: 'assets/profile/profile.jpg'),
   ];
-  int selectedindex = 1;
+  int selectedindex = 0;
+
+  String dateinit(){
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd/MM/yyyy');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
 
   void initState(){
+    date = dateinit();
   }
 
   @override
@@ -80,13 +89,13 @@ class _PatientListPageState extends State<PatientListPage> {
               print(index);
               if (index == 0) {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => HomePage()));
+                    MaterialPageRoute(builder: (context) => PatientListPage()));
               }else if (index == 1) {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => PatientListPage()));
+                    MaterialPageRoute(builder: (context) => PatientPage()));
               }else if (index == 2) {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => PatientPage()));
+                    MaterialPageRoute(builder: (context) => HomePage()));
               }else if (index == 3) {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => LoginPage()));
@@ -94,20 +103,20 @@ class _PatientListPageState extends State<PatientListPage> {
             }),
             items: <BottomNavyBarItem>[
               BottomNavyBarItem(
-                icon: Icon(Icons.apps),
+                icon: Icon(Icons.people),
                 title: Text('Home'),
                 activeColor: Colors.red,
                 textAlign: TextAlign.center,
               ),
               BottomNavyBarItem(
-                icon: Icon(Icons.people),
-                title: Text('Users'),
+                icon: Icon(Icons.info),
+                title: Text('Info'),
                 activeColor: Colors.purpleAccent,
                 textAlign: TextAlign.center,
               ),
               BottomNavyBarItem(
-                icon: Icon(Icons.settings),
-                title: Text('Settings'),
+                icon: Icon(Icons.message),
+                title: Text('Chat'),
                 activeColor: Colors.blue,
                 textAlign: TextAlign.center,
               ),
@@ -122,18 +131,36 @@ class _PatientListPageState extends State<PatientListPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(20.0),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 20,
+                        height: 10,
+                      ),
+                      Text(
+                        '  Main Page',
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('    '+date,
+                        style: TextStyle(color: Colors.black87,fontSize: 15),
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Text(
                         '   Patient List',
                         style: TextStyle(
                           color: Colors.black87,
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

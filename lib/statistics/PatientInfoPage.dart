@@ -17,6 +17,7 @@ import 'package:intl/intl.dart';
 import '../PatientListPage.dart';
 import '../bottombar.dart';
 import '../dashboard.dart';
+import '../startup/login/login.dart';
 
 class PatientPage extends StatefulWidget {
   const PatientPage({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class PatientPage extends StatefulWidget {
 class _PatientPageState extends State<PatientPage> {
   late List<WidgetData> data;
   User user = UserPreferences.myUser;
-  int selectedindex = 2;
+  int selectedindex = 1;
   double _height = 170.0;
   double _width = 140.0;
   double _height1 = 170.0;
@@ -102,8 +103,6 @@ class _PatientPageState extends State<PatientPage> {
     return true;
   }
 
-
-
   //scroll controller
   final _controller = PageController();
 
@@ -125,36 +124,37 @@ class _PatientPageState extends State<PatientPage> {
           curve: Curves.easeIn,
           onItemSelected: (index) => setState(() {
             selectedindex = index;
+            print(index);
             if (index == 0) {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HomePage()));
+                  MaterialPageRoute(builder: (context) => PatientListPage()));
             }else if (index == 1) {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PatientListPage()));
+                  MaterialPageRoute(builder: (context) => PatientPage()));
             }else if (index == 2) {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PatientPage()));
+                  MaterialPageRoute(builder: (context) => HomePage()));
             }else if (index == 3) {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => Dashboard()));
+                  MaterialPageRoute(builder: (context) => LoginPage()));
             }
           }),
           items: <BottomNavyBarItem>[
             BottomNavyBarItem(
-              icon: Icon(Icons.apps),
+              icon: Icon(Icons.people),
               title: Text('Home'),
               activeColor: Colors.red,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.people),
-              title: Text('Users'),
+              icon: Icon(Icons.info),
+              title: Text('Info'),
               activeColor: Colors.purpleAccent,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings'),
+              icon: Icon(Icons.message),
+              title: Text('Chat'),
               activeColor: Colors.blue,
               textAlign: TextAlign.center,
             ),

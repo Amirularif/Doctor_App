@@ -28,7 +28,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int selectedindex = 0;
+  int selectedindex = 2;
   late Widget selectedWidget;
 
   void initState(){
@@ -112,13 +112,13 @@ class _HomePageState extends State<HomePage> {
           print(index);
           if (index == 0) {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => HomePage()));
+                MaterialPageRoute(builder: (context) => PatientListPage()));
           }else if (index == 1) {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => PatientListPage()));
+                MaterialPageRoute(builder: (context) => PatientPage()));
           }else if (index == 2) {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => PatientPage()));
+                MaterialPageRoute(builder: (context) => HomePage()));
           }else if (index == 3) {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => LoginPage()));
@@ -126,20 +126,20 @@ class _HomePageState extends State<HomePage> {
         }),
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.apps),
+            icon: Icon(Icons.people),
             title: Text('Home'),
             activeColor: Colors.red,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.people),
-            title: Text('Users'),
+            icon: Icon(Icons.info),
+            title: Text('Info'),
             activeColor: Colors.purpleAccent,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.settings),
-            title: Text('Settings'),
+            icon: Icon(Icons.message),
+            title: Text('Chat'),
             activeColor: Colors.blue,
             textAlign: TextAlign.center,
           ),
@@ -152,17 +152,26 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20.0,20.0,0,0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Messages',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black87),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0,20.0,0,0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 35,
+                  padding: EdgeInsets.only(bottom: 5),
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      border: Border(
+                        bottom:BorderSide(width: 2.0, color: Colors.grey.shade400),
+                      ),
+                      color: Colors.grey.shade100),
+                  child: Text('   Messages',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black87),
                   ),
-                  SizedBox(height: 5),
-                  Row(
+                ),
+                Expanded(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -170,9 +179,9 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: 700,
-                            width: 320,
-                            padding: EdgeInsets.all(8),
+                            height: 610,
+                            width: 370,
+                            padding: EdgeInsets.only(left: 10),
                             decoration: BoxDecoration(
                                 border: Border(
                                   right:BorderSide(width: 2.0, color: Colors.grey.shade400),
@@ -193,15 +202,15 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Container(
                             height: 530,
-                            width: 880,
-                            padding: EdgeInsets.fromLTRB(10,10,10,10),
+                            width: 870,
+                            padding: EdgeInsets.fromLTRB(10,10,0,10),
                             decoration: BoxDecoration(
                                 color: Colors.grey.shade100),
                             child: ChatPage(),
                           ),
                           Container(
-                            height: 100,
-                            width: 940,
+                            height: 87,
+                            width: 910,
                             padding: EdgeInsets.all(1),
                             decoration: BoxDecoration(
                                 color: Colors.grey.shade300),
@@ -211,8 +220,9 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-              ],
-            ),
+
+                ),
+            ],
           ),
         ),
       ),
@@ -353,7 +363,7 @@ class _HomePageState extends State<HomePage> {
         text: TextSpan(
             text: 'Name : ',
             style: TextStyle(
-                fontSize: 13,
+                fontSize: 16,
                 color: Colors.black54,
                 fontWeight: FontWeight.bold
             ),
@@ -361,7 +371,8 @@ class _HomePageState extends State<HomePage> {
               TextSpan(
                   text: info.name,
                   style: TextStyle(
-                      fontWeight: FontWeight.w400
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
                   )
               )
             ]
@@ -380,12 +391,12 @@ class _HomePageState extends State<HomePage> {
             Text(
               info.recentmsg,
               style: TextStyle(
-                  fontSize: 10),
+                  fontSize: 12),
             ),
             Text(
               info.time,
               style: TextStyle(
-                  fontSize: 10),
+                  fontSize: 12),
             ),
           ]
       ),
@@ -397,8 +408,8 @@ class _HomePageState extends State<HomePage> {
     return GestureDetector(
       onTap: (){},
       child: Container(
-      width: 50,
-      height: 50,
+      width: 60,
+      height: 60,
       decoration: new BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
@@ -417,13 +428,13 @@ class _HomePageState extends State<HomePage> {
       print(index);
       selectedindex = index;
       if (index == 0) {
-        selectedWidget = HomePage();
+        selectedWidget = PatientListPage();
         print("hai");
       }else if (index == 1) {
         selectedWidget = const PatientPage();
         print("hai");
       }else if (index == 2) {
-        selectedWidget = const PatientListPage();
+        selectedWidget = HomePage();
       }else if (index == 3) {
         selectedWidget = const LoginPage();
       }
@@ -473,7 +484,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget _bodyChat() {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.only(left: 5, right: 5, top: 5),
+        padding: EdgeInsets.only(left: 5, top: 5),
         width: double.infinity,
         child: ListView(
           physics: BouncingScrollPhysics(),

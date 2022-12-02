@@ -1,3 +1,4 @@
+import 'package:Doctor_App/startup/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:Doctor_App/bottombar.dart';
 import 'package:Doctor_App/dashboard.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }
