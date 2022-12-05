@@ -231,232 +231,214 @@ class _DashboardState extends State<Dashboard> {
                             height: 10,
                           ),
 
-                          Container(
-                            height: 300,
-                            width: 1200,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(12)
-                            ),
-                            padding: EdgeInsets.all(20),
-                            child: ListView(
-                              children: [
-                                Column(
-                                  children:[
-                                    Row(
-                                      //mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        StatsCards(
-                                          username: "Nik Amir",
-                                          age: 'Age : 23',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 652398',
-                                          imgPath: 'assets/profile/telur.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: "Amirul Arif",
-                                          age: 'Age : 23' ,
-                                          gender: 'Gender : Male' ,
-                                          fitbitID: 'fitbit ID : 234687',
-                                          imgPath: 'assets/profile/pfpnana.png',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: "Hani Qamaliah",
-                                          age: 'Age : 23',
-                                          gender: 'Gender : Female',
-                                          fitbitID: 'fitbit ID : 907632',
-                                          imgPath: 'assets/profile/pfphani.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: 'Name : 홍길동',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/profile.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                      ],),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Row(
-                                      children:[
-                                        StatsCards(
-                                          username: 'Name : 이길동',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/andrew.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: 'Name : 홍길동',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/toby.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: 'Name : 하니',
-                                          age: 'Age : 22',
-                                          gender: 'Gender : Female',
-                                          fitbitID: 'fitbit ID : 20192',
-                                          imgPath: 'assets/profile/tom.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: 'Name : 작완',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/profile.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                      ],),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Row(
-                                      children:[
-                                        StatsCards(
-                                          username: 'Name : 이길동',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/profile.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: 'Name : 홍길동',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/profile.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: 'Name : 하니',
-                                          age: 'Age : 22',
-                                          gender: 'Gender : Female',
-                                          fitbitID: 'fitbit ID : 20192',
-                                          imgPath: 'assets/profile/profile.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        StatsCards(
-                                          username: 'Name : 작완',
-                                          age: 'Age : 24',
-                                          gender: 'Gender : Male',
-                                          fitbitID: 'fitbit ID : 20193',
-                                          imgPath: 'assets/profile/profile.jpg',
-                                          color: Colors.white70,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                      ],),
-                                  ],),
-                              ],),
+                  Container(
+                   height: 300,
+                   width: 1200,
+                   decoration: BoxDecoration(
+                     color: Colors.grey.shade300,
+                     borderRadius: BorderRadius.circular(12)
+                   ),
+                   padding: EdgeInsets.all(10),
+                   child: ListView(
+                     children: [
+                       Column(
+                        children:[
+                          Row(
+                           children: [
+                             StatsCards(
+                               username: 'Name : 아미룰',
+                               age: 'Age : 23',
+                               gender: 'Gender : Male',
+                               fitbitID: 'fitbit ID : 20191',
+                               imgPath: 'assets/profile/toby.jpg',
+                               color: Colors.white70,
+                             ),
+                             SizedBox(
+                               width: 10,
+                             ),
+                             StatsCards(
+                             username: 'Name : 하니',
+                             age: 'Age : 22',
+                             gender: 'Gender : Female',
+                             fitbitID: 'fitbit ID : 20192',
+                               imgPath: 'assets/profile/zendaya.jpg',
+                             color: Colors.white70,
+                           ),
+                             SizedBox(
+                               width: 10,
+                             ),
+                             StatsCards(
+                               username: 'Name : 작완',
+                               age: 'Age : 24',
+                               gender: 'Gender : Male',
+                               fitbitID: 'fitbit ID : 20193',
+                               imgPath: 'assets/profile/tom.jpg',
+                               color: Colors.white70,
+                             ),
+                             SizedBox(
+                               width: 10,
+                             ),
+                             StatsCards(
+                               username: 'Name : 아미룰',
+                               age: 'Age : 23',
+                               gender: 'Gender : Male',
+                               fitbitID: 'fitbit ID : 20191',
+                               imgPath: 'assets/profile/profile.jpg',
+                               color: Colors.white70,
+                             ),
+                           ],),
+                          SizedBox(
+                            height: 10,
                           ),
+                          Row(
+                             children:[
+                               StatsCards(
+                                 username: 'Name : 이길동',
+                                 age: 'Age : 24',
+                                 gender: 'Gender : Male',
+                                 fitbitID: 'fitbit ID : 20193',
+                                 imgPath: 'assets/profile/andrew.jpg',
+                                 color: Colors.white70,
+                               ),
+                               SizedBox(
+                                 width: 10,
+                               ),
+                               StatsCards(
+                                 username: 'Name : 홍길동',
+                                 age: 'Age : 24',
+                                 gender: 'Gender : Male',
+                                 fitbitID: 'fitbit ID : 20193',
+                                 imgPath: 'assets/profile/profile.jpg',
+                                 color: Colors.white70,
+                               ),
+                               SizedBox(
+                                 width: 10,
+                               ),
+                               StatsCards(
+                                 username: 'Name : 하니',
+                                 age: 'Age : 22',
+                                 gender: 'Gender : Female',
+                                 fitbitID: 'fitbit ID : 20192',
+                                 imgPath: 'assets/profile/profile.jpg',
+                                 color: Colors.white70,
+                               ),
+                               SizedBox(
+                                 width: 10,
+                               ),
+                               StatsCards(
+                                 username: 'Name : 작완',
+                                 age: 'Age : 24',
+                                 gender: 'Gender : Male',
+                                 fitbitID: 'fitbit ID : 20193',
+                                 imgPath: 'assets/profile/profile.jpg',
+                                 color: Colors.white70,
+                               ),
+                              ],),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              StatsCards(
+                                username: 'Name : 이길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              StatsCards(
+                                username: 'Name : 홍길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              StatsCards(
+                                username: 'Name : 이길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              StatsCards(
+                                username: 'Name : 홍길동',
+                                age: 'Age : 24',
+                                gender: 'Gender : Male',
+                                fitbitID: 'fitbit ID : 20193',
+                                imgPath: 'assets/profile/profile.jpg',
+                                color: Colors.white70,
+                              ),
+                            ],
+                          )
+                        ],),
+                        ],),
+                      ),
 
                           SizedBox(
                             height: 20,
                           ),
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Information',
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Container(
-                            height: 146,
-                            width: 1260,
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade300,
-                                borderRadius: BorderRadius.circular(12)
-                            ),
-                            child: PageView(
-                              scrollDirection: Axis.horizontal,
-                              controller: _controller,
-                              children: [
-                                PatientGraphPage(),
-                                SurveyGraphPage(),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          //scroll bar
-                          SmoothPageIndicator(
-                            controller: _controller,
-                            count: 4,
-                            effect: ExpandingDotsEffect(
-                              activeDotColor: Colors.grey.shade600,
-                              dotHeight: 5,
-                              dotWidth: 5,
-                            ),
-                          ),
-                        ],),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Information',
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                      height: 146,
+                      width: 1260,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(12)
+                      ),
+                      child: PageView(
+                        scrollDirection: Axis.horizontal,
+                        controller: _controller,
+                        children: [
+                          PatientGraphPage(),
+                          SurveyGraphPage(),
+                        ],
+                      ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  //scroll bar
+                  SmoothPageIndicator(
+                    controller: _controller,
+                    count: 4,
+                    effect: ExpandingDotsEffect(
+                      activeDotColor: Colors.grey.shade600,
+                      dotHeight: 5,
+                      dotWidth: 5,
                     ),
                   ),
-                ),
-              ),
-            );
-          }
-          else{
-            return const Scaffold(
-                body:Center(child: CircularProgressIndicator())
-            );//
-          }
-        }
+                ],),
+            ),
+          ),
+        ),
     );
   }
   void onPressed(index) {
