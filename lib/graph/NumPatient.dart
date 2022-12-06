@@ -17,10 +17,10 @@ class _PatientGraphPageState extends State<PatientGraphPage> {
   @override
   void initState() {
     data = [
-      _ChartData('Below 10', 12),
-      _ChartData('11 to 15', 14),
-      _ChartData('16 to 18', 18),
-      _ChartData('Above 19', 6.4),
+      _ChartData('Below 10', 1),
+      _ChartData('11 to 15', 3),
+      _ChartData('16 to 18', 6),
+      _ChartData('Above 19', 15),
     ];
     _tooltip = TooltipBehavior(enable: true);
     super.initState();
@@ -36,7 +36,7 @@ class _PatientGraphPageState extends State<PatientGraphPage> {
             legend: Legend(isVisible: true,
             iconWidth: 8,
             iconHeight: 8,
-            offset: Offset(-70,-45)),
+            offset: Offset(-520,-45)),
             series: <ChartSeries<_ChartData, String>>[
               ColumnSeries<_ChartData, String>(
                 legendIconType: LegendIconType.circle,

@@ -1,4 +1,3 @@
-import 'package:Doctor_App/ChatPage.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:Doctor_App/graph/FitHeart.dart';
@@ -18,6 +17,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:intl/intl.dart';
 import '../bottombar.dart';
 import '../dashboard.dart';
+import 'ChatPage.dart';
+import 'ServerDB/DBProfile.dart';
 
 class PatientListPage extends StatefulWidget {
   const PatientListPage({Key? key}) : super(key: key);
@@ -30,17 +31,17 @@ class _PatientListPageState extends State<PatientListPage> {
   String date = '';
   List<Patient> users = [
     const Patient(
-        name: '아미룰',
-        fitbitid: '20191235689',
-        imgpath: 'assets/profile/toby.jpg'),
+        name: 'Nik Amir',
+        fitbitid: '20191652398',
+        imgpath: 'assets/profile/telur.jpg'),
     const Patient(
-        name: '하니',
+        name: 'Amirul Arif',
         fitbitid: '20191234687',
-        imgpath: 'assets/profile/zendaya.jpg'),
+        imgpath: 'assets/profile/pfpnana.png'),
     const Patient(
-        name: '작완',
+        name: 'Hani Qamaliah',
         fitbitid: '20191907632',
-        imgpath: 'assets/profile/andrew.jpg'),
+        imgpath: 'assets/profile/pfphani.jpg'),
     const Patient(
         name: '홍길동',
         fitbitid: '20191652398',
@@ -48,11 +49,15 @@ class _PatientListPageState extends State<PatientListPage> {
     const Patient(
         name: '이길동',
         fitbitid: '20191235689',
+        imgpath: 'assets/profile/andrew.jpg'),
+    const Patient(
+        name: '홍길동',
+        fitbitid: '20191652398',
         imgpath: 'assets/profile/tom.jpg'),
     const Patient(
         name: '하니',
         fitbitid: '20191234687',
-        imgpath: 'assets/profile/profile.jpg'),
+        imgpath: 'assets/profile/toby.jpg'),
     const Patient(
         name: '작완',
         fitbitid: '20191907632',
@@ -60,6 +65,14 @@ class _PatientListPageState extends State<PatientListPage> {
     const Patient(
         name: '홍길동',
         fitbitid: '20191652398',
+        imgpath: 'assets/profile/profile.jpg'),
+    const Patient(
+        name: '이길동',
+        fitbitid: '20191235689',
+        imgpath: 'assets/profile/profile.jpg'),
+    const Patient(
+        name: '아미룰',
+        fitbitid: '20191235689',
         imgpath: 'assets/profile/profile.jpg'),
   ];
   int selectedindex = 0;
@@ -73,11 +86,25 @@ class _PatientListPageState extends State<PatientListPage> {
 
   void initState(){
     date = dateinit();
+    DBLoad();
+  }
+
+  //server
+
+  var logList = [];
+  String recent = "01/01/2022";
+  Future DBLoad() async{
+    logList = await ProfileData.connect("P1001");
+    //int last = logList.length - 1;
+    recent = logList[0]["Reg"];
+    print(recent);
   }
 
   @override
-    Widget build(BuildContext context) {
-      return Scaffold(
+  Widget build(BuildContext context) {
+
+
+    return Scaffold(
           backgroundColor: Colors.grey.shade100,
           bottomNavigationBar: BottomNavyBar(
             selectedIndex: selectedindex,
@@ -207,8 +234,8 @@ class _PatientListPageState extends State<PatientListPage> {
                 )
               )
             );
-          }
-        }
+  }
+}
 class Patient{
   final String name;
   final String fitbitid;

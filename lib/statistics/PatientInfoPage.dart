@@ -1,4 +1,3 @@
-import 'package:Doctor_App/ChatPage.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:Doctor_App/graph/FitHeart.dart';
@@ -14,7 +13,9 @@ import 'package:Doctor_App/util/save_sucess.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:intl/intl.dart';
+import '../ChatPage.dart';
 import '../PatientListPage.dart';
+import '../ServerDB/DBProfile.dart';
 import '../bottombar.dart';
 import '../dashboard.dart';
 import '../startup/login/login.dart';
@@ -103,6 +104,27 @@ class _PatientPageState extends State<PatientPage> {
     return true;
   }
 
+  //server
+  String name = "NaN";
+  String age = "NaN";
+  String token = "NaN";
+  String gender = "NaN";
+  String image = "NaN";
+  var logList = [];
+  String recent = "01/01/2022";
+  Future DBLoad() async{
+    logList = await ProfileData.connect("P1001");
+
+    //int last = logList.length - 1;
+    recent = logList[0]["Reg"];
+    token = logList[0]["Token"];
+    name = logList[0]["Name"];
+    age = logList[0]["Age"];
+    gender = logList[0]["Gender"];
+    image = logList[0]["Image"];
+    print("record traced on $image");
+  }
+
   //scroll controller
   final _controller = PageController();
 
@@ -115,463 +137,477 @@ class _PatientPageState extends State<PatientPage> {
       WidgetData('Log', 34),
     ];
 
-    return Scaffold(
-        backgroundColor: Colors.grey.shade100,
-        bottomNavigationBar: BottomNavyBar(
-          selectedIndex: selectedindex,
-          showElevation: true,
-          itemCornerRadius: 24,
-          curve: Curves.easeIn,
-          onItemSelected: (index) => setState(() {
-            selectedindex = index;
-            print(index);
-            if (index == 0) {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PatientListPage()));
-            }else if (index == 1) {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PatientPage()));
-            }else if (index == 2) {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HomePage()));
-            }else if (index == 3) {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => LoginPage()));
-            }
-          }),
-          items: <BottomNavyBarItem>[
-            BottomNavyBarItem(
-              icon: Icon(Icons.people),
-              title: Text('Home'),
-              activeColor: Colors.red,
-              textAlign: TextAlign.center,
-            ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.info),
-              title: Text('Info'),
-              activeColor: Colors.purpleAccent,
-              textAlign: TextAlign.center,
-            ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.message),
-              title: Text('Chat'),
-              activeColor: Colors.blue,
-              textAlign: TextAlign.center,
-            ),
-            BottomNavyBarItem(
-              icon: Icon(Icons.logout),
-              title: Text('Logout'),
-              activeColor: Colors.pink,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      //hi user!
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+    return FutureBuilder(
+        future: DBLoad(),
+        builder: (context, snapshot){
+          if(logList != null){
+            print("record built on $gender");
+            return Scaffold(
+                backgroundColor: Colors.grey.shade100,
+                bottomNavigationBar: BottomNavyBar(
+                  selectedIndex: selectedindex,
+                  showElevation: true,
+                  itemCornerRadius: 24,
+                  curve: Curves.easeIn,
+                  onItemSelected: (index) => setState(() {
+                    selectedindex = index;
+                    print(index);
+                    if (index == 0) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => PatientListPage()));
+                    }else if (index == 1) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => PatientPage()));
+                    }else if (index == 2) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    }else if (index == 3) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                    }
+                  }),
+                  items: <BottomNavyBarItem>[
+                    BottomNavyBarItem(
+                      icon: Icon(Icons.people),
+                      title: Text('Home'),
+                      activeColor: Colors.red,
+                      textAlign: TextAlign.center,
+                    ),
+                    BottomNavyBarItem(
+                      icon: Icon(Icons.info),
+                      title: Text('Info'),
+                      activeColor: Colors.purpleAccent,
+                      textAlign: TextAlign.center,
+                    ),
+                    BottomNavyBarItem(
+                      icon: Icon(Icons.message),
+                      title: Text('Chat'),
+                      activeColor: Colors.blue,
+                      textAlign: TextAlign.center,
+                    ),
+                    BottomNavyBarItem(
+                      icon: Icon(Icons.logout),
+                      title: Text('Logout'),
+                      activeColor: Colors.pink,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                body: SafeArea(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
                         children: [
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            'Patient Info',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                  height: 170,
-                                  width: 325,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey.shade200,
-                                      borderRadius: BorderRadius.circular(12)
+                              //hi user!
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 8,
                                   ),
-                                  padding: EdgeInsets.all(10.0),
-                                  child : Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  Text(
+                                    'Patient Info',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      GestureDetector(
-                                          onTap: (){
-                                          },
-                                          child: Container(
-                                              height: 90,
-                                              width: 90,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(12),
-                                                  image: DecorationImage(
-                                                      image: AssetImage('assets/profile/toby.jpg'),
-                                                      fit: BoxFit.cover)
+                                      Container(
+                                          height: 170,
+                                          width: 325,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey.shade200,
+                                              borderRadius: BorderRadius.circular(12)
+                                          ),
+                                          padding: EdgeInsets.all(10.0),
+                                          child : Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              GestureDetector(
+                                                  onTap: (){
+                                                  },
+                                                  child: Container(
+                                                      height: 90,
+                                                      width: 90,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(12),
+                                                          image: DecorationImage(
+                                                              image: AssetImage('assets/profile/toby.jpg'),
+                                                              fit: BoxFit.cover)
+                                                      )
+                                                  )
+                                              ),
+
+                                              SizedBox(
+                                                width: 12,
+                                              ),
+
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 30,
+                                                  ),
+                                                  //name
+                                                  Text('홍길동',
+                                                    style: TextStyle(
+                                                        color: Colors.black87,
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.bold
+                                                    ),),
+                                                  SizedBox(
+                                                    height: 4,
+                                                  ),
+                                                  //age
+                                                  Text('Age        : 23',
+                                                    style: TextStyle(
+                                                      color: Colors.black87,
+                                                      fontSize: 13,
+                                                    ),),
+                                                  SizedBox(
+                                                    height: 4,
+                                                  ),
+                                                  //gender
+                                                  Text('Gender  : Male',
+                                                    style: TextStyle(
+                                                      color: Colors.black87,
+                                                      fontSize: 13,
+                                                    ),),
+                                                  SizedBox(
+                                                    height: 4,
+                                                  ),
+                                                  //fitbit ID
+                                                  Text('Fitbit ID : 2476374753456',
+                                                    style: TextStyle(
+                                                      color: Colors.black87,
+                                                      fontSize: 13,
+                                                    ),),
+                                                ],
+                                              ),
+
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 30,
+                                                  ),
+                                                  IconButton(onPressed: (){
+                                                    Navigator.of(context).push(
+                                                        MaterialPageRoute(builder: (context) => HomePage()));
+                                                  },
+                                                      icon : Icon(Icons.message),
+                                                      color: Colors.grey,
+                                                      iconSize: 20),
+                                                  SizedBox(
+                                                    height: 1,
+                                                  ),
+                                                  IconButton(onPressed: (){},
+                                                      icon : Icon(Icons.call),
+                                                      color: Colors.grey,
+                                                      iconSize: 20),
+                                                ],
                                               )
+                                            ],
                                           )
                                       ),
 
                                       SizedBox(
-                                        width: 12,
+                                        width: 20,
                                       ),
 
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                          ),
-                                          //name
-                                          Text('홍길동',
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold
-                                            ),),
-                                          SizedBox(
-                                            height: 4,
-                                          ),
-                                          //age
-                                          Text('Age        : 23',
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 13,
-                                            ),),
-                                          SizedBox(
-                                            height: 4,
-                                          ),
-                                          //gender
-                                          Text('Gender  : Male',
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 13,
-                                            ),),
-                                          SizedBox(
-                                            height: 4,
-                                          ),
-                                          //fitbit ID
-                                          Text('Fitbit ID : 2476374753456',
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 13,
-                                            ),),
-                                        ],
+                                      AnimatedContainer(
+                                        duration: Duration(milliseconds: 300),
+                                        height: _height,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(20),
+                                          color: Colors.white,
+                                        ),
+                                        width: _width,
+                                        padding: EdgeInsets.only(left: 15, right: 5),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 1),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      if (!_isExpanded) {
+                                                        setState(() {
+                                                          _height = 170;
+                                                          _width = 420;
+                                                          _isExpanded = true;
+                                                        });
+                                                      } else {
+                                                        setState(() {
+                                                          _height = 170;
+                                                          _width = 140;
+                                                          _isExpanded = false;
+                                                        });
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                      height: 140,
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius: BorderRadius.circular(12)
+                                                      ),
+                                                      padding: EdgeInsets.only(top: 10.0,left: 10.0),
+                                                      child: CircularPercentIndicator(
+                                                        radius: 40.0,
+                                                        lineWidth: 7.0,
+                                                        animation: true,
+                                                        percent: 0.8,
+                                                        center: new Text(
+                                                          "80.0%",
+                                                          style:
+                                                          new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
+                                                        ),
+                                                        linearGradient: LinearGradient(
+                                                          begin: Alignment.topRight,end:Alignment.bottomLeft,
+                                                          colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
+                                                        ),
+                                                        footer: new Text(
+                                                          "\n조사로그 완성률 ",
+                                                          style:
+                                                          new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
+                                                        ),
+                                                        circularStrokeCap: CircularStrokeCap.round,
+                                                        rotateLinearGradient: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            _isExpanded
+                                                ? FutureBuilder(
+                                                future: _showList(),
+                                                /// will wait untill box animation completed
+                                                builder: (context, snapshot) {
+                                                  if (!snapshot.hasData) {
+                                                    return SizedBox();
+                                                  }
+                                                  return Container(
+                                                    height: 140,
+                                                    width: 280,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius: BorderRadius.circular(12)
+                                                    ),
+                                                    padding: EdgeInsets.all(5.0),
+                                                    child:ListView.separated(
+                                                        itemBuilder: (context,index){
+                                                          return listViewItem(index);
+                                                        },
+                                                        separatorBuilder: (context,index){
+                                                          return Divider(height: 1,thickness: 2,);
+                                                        },
+                                                        itemCount: messages.length),
+                                                  );
+                                                })
+                                                : SizedBox.shrink(),
+                                          ],
+                                        ),
                                       ),
 
                                       SizedBox(
-                                        width: 5,
+                                        width: 20,
                                       ),
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                          ),
-                                          IconButton(onPressed: (){
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(builder: (context) => HomePage()));
-                                          },
-                                              icon : Icon(Icons.message),
-                                              color: Colors.grey,
-                                              iconSize: 20),
-                                          SizedBox(
-                                            height: 1,
-                                          ),
-                                          IconButton(onPressed: (){},
-                                              icon : Icon(Icons.call),
-                                              color: Colors.grey,
-                                              iconSize: 20),
-                                        ],
-                                      )
+
+                                      AnimatedContainer(
+                                        duration: Duration(milliseconds: 300),
+                                        height: _height1,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(20),
+                                          color: Colors.white,
+                                        ),
+                                        width: _width1,
+                                        padding: EdgeInsets.only(left: 15, right: 5),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 1),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  InkWell(
+                                                    onTap: () {
+                                                      if (!isExpanded2) {
+                                                        setState(() {
+                                                          _height1 = 170;
+                                                          _width1 = 420;
+                                                          isExpanded2 = true;
+                                                        });
+                                                      } else {
+                                                        setState(() {
+                                                          _height1 = 170;
+                                                          _width1 = 140;
+                                                          isExpanded2 = false;
+                                                        });
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                      height: 140,
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius: BorderRadius.circular(12)
+                                                      ),
+                                                      padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                                                      child: CircularPercentIndicator(
+                                                        radius: 40.0,
+                                                        lineWidth: 7.0,
+                                                        animation: true,
+                                                        percent: 0.7,
+                                                        center: new Text(
+                                                          "70.0%",
+                                                          style:
+                                                          new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
+                                                        ),
+                                                        linearGradient: LinearGradient(
+                                                          begin: Alignment.topRight,end:Alignment.bottomLeft,
+                                                          colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
+                                                        ),
+                                                        footer: new Text(
+                                                          "\n무드로그 완성률 ",
+                                                          style:
+                                                          new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
+                                                        ),
+                                                        circularStrokeCap: CircularStrokeCap.round,
+                                                        rotateLinearGradient: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            isExpanded2
+                                                ? FutureBuilder(
+                                                future: _showListtwo(),
+                                                /// will wait untill box animation completed
+                                                builder: (context, snapshot) {
+                                                  if (!snapshot.hasData) {
+                                                    return SizedBox();
+                                                  }
+                                                  return Container(
+                                                    height: 140,
+                                                    width: 280,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius: BorderRadius.circular(12)
+                                                    ),
+                                                    padding: EdgeInsets.all(5.0),
+                                                    child:ListView.separated(
+                                                        itemBuilder: (context,index){
+                                                          return listViewItem1(index);
+                                                        },
+                                                        separatorBuilder: (context,index){
+                                                          return Divider(height: 2);
+                                                        },
+                                                        itemCount: messages.length),
+                                                  );
+                                                })
+                                                : SizedBox.shrink(),
+
+                                          ],
+                                        ),
+                                      ),
                                     ],
-                                  )
+                                  ),
+                                ],
                               ),
+                            ],
+                          ),
 
-                              SizedBox(
-                                width: 20,
-                              ),
-
-                              AnimatedContainer(
-                                duration: Duration(milliseconds: 300),
-                                height: _height,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                ),
-                                width: _width,
-                                padding: EdgeInsets.only(left: 15, right: 5),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 1),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              if (!_isExpanded) {
-                                                setState(() {
-                                                  _height = 170;
-                                                  _width = 420;
-                                                  _isExpanded = true;
-                                                });
-                                              } else {
-                                                setState(() {
-                                                  _height = 170;
-                                                  _width = 140;
-                                                  _isExpanded = false;
-                                                });
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 140,
-                                              width: 100,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius: BorderRadius.circular(12)
-                                              ),
-                                              padding: EdgeInsets.only(top: 10.0,left: 10.0),
-                                              child: CircularPercentIndicator(
-                                                radius: 40.0,
-                                                lineWidth: 7.0,
-                                                animation: true,
-                                                percent: 0.8,
-                                                center: new Text(
-                                                  "80.0%",
-                                                  style:
-                                                  new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
-                                                ),
-                                                linearGradient: LinearGradient(
-                                                  begin: Alignment.topRight,end:Alignment.bottomLeft,
-                                                  colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
-                                                ),
-                                                footer: new Text(
-                                                  "\n조사로그 완성률 ",
-                                                  style:
-                                                  new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
-                                                ),
-                                                circularStrokeCap: CircularStrokeCap.round,
-                                                rotateLinearGradient: true,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    _isExpanded
-                                        ? FutureBuilder(
-                                        future: _showList(),
-                                        /// will wait untill box animation completed
-                                        builder: (context, snapshot) {
-                                          if (!snapshot.hasData) {
-                                            return SizedBox();
-                                          }
-                                          return Container(
-                                            height: 140,
-                                            width: 280,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.circular(12)
-                                            ),
-                                            padding: EdgeInsets.all(5.0),
-                                            child:ListView.separated(
-                                                itemBuilder: (context,index){
-                                                  return listViewItem(index);
-                                                },
-                                                separatorBuilder: (context,index){
-                                                  return Divider(height: 1,thickness: 2,);
-                                                },
-                                                itemCount: messages.length),
-                                          );
-                                        })
-                                        : SizedBox.shrink(),
-                                  ],
-                                ),
-                              ),
-
-                              SizedBox(
-                                width: 20,
-                              ),
-
-                              AnimatedContainer(
-                                duration: Duration(milliseconds: 300),
-                                height: _height1,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                ),
-                                width: _width1,
-                                padding: EdgeInsets.only(left: 15, right: 5),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 1),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              if (!isExpanded2) {
-                                                setState(() {
-                                                  _height1 = 170;
-                                                  _width1 = 420;
-                                                  isExpanded2 = true;
-                                                });
-                                              } else {
-                                                setState(() {
-                                                  _height1 = 170;
-                                                  _width1 = 140;
-                                                  isExpanded2 = false;
-                                                });
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 140,
-                                              width: 100,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius: BorderRadius.circular(12)
-                                              ),
-                                              padding: EdgeInsets.only(top: 10.0, left: 10.0),
-                                              child: CircularPercentIndicator(
-                                                radius: 40.0,
-                                                lineWidth: 7.0,
-                                                animation: true,
-                                                percent: 0.7,
-                                                center: new Text(
-                                                  "70.0%",
-                                                  style:
-                                                  new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 15.0),
-                                                ),
-                                                linearGradient: LinearGradient(
-                                                  begin: Alignment.topRight,end:Alignment.bottomLeft,
-                                                  colors: <Color> [Colors.grey.shade900,Colors.grey.shade900],
-                                                ),
-                                                footer: new Text(
-                                                  "\n무드로그 완성률 ",
-                                                  style:
-                                                  new TextStyle(color: Colors.grey.shade900,fontWeight: FontWeight.bold, fontSize: 11.0),
-                                                ),
-                                                circularStrokeCap: CircularStrokeCap.round,
-                                                rotateLinearGradient: true,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    isExpanded2
-                                        ? FutureBuilder(
-                                        future: _showListtwo(),
-                                        /// will wait untill box animation completed
-                                        builder: (context, snapshot) {
-                                          if (!snapshot.hasData) {
-                                            return SizedBox();
-                                          }
-                                          return Container(
-                                            height: 140,
-                                            width: 280,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.circular(12)
-                                            ),
-                                            padding: EdgeInsets.all(5.0),
-                                            child:ListView.separated(
-                                                itemBuilder: (context,index){
-                                                  return listViewItem1(index);
-                                                },
-                                                separatorBuilder: (context,index){
-                                                  return Divider(height: 2);
-                                                },
-                                                itemCount: messages.length),
-                                          );
-                                        })
-                                        : SizedBox.shrink(),
-
-                                  ],
+                          SizedBox(
+                            height: 20,
+                          ),
+                          //menu title
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Data',
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
                           ),
+
+                          SizedBox(
+                            height: 15,
+                          ),
+
+                          //fitbit
+                          Container(
+                              height: 300,
+                              child: PageView(
+                                scrollDirection: Axis.horizontal,
+                                controller: _controller,
+                                children: [
+                                  FitHeartGraph(token: token),
+                                  FitStepGraph(token: token),
+                                  FitSleepGraph(token: token),
+                                  FitWeightGraph(token: token),
+                                ],
+                              )
+                          ),
+
+                          SizedBox(
+                            height: 5,
+                          ),
+                          //scroll bar
+                          SmoothPageIndicator(
+                            controller: _controller,
+                            count: 4,
+                            effect: ExpandingDotsEffect(
+                              activeDotColor: Colors.grey.shade600,
+                              dotHeight: 5,
+                              dotWidth: 5,
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 20,
+                          ),
+                          //widget
                         ],
                       ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-                  //menu title
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Data',
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 15,
-                  ),
-
-                  //fitbit
-                  Container(
-                      height: 300,
-                      child: PageView(
-                        scrollDirection: Axis.horizontal,
-                        controller: _controller,
-                        children: [
-                          FitHeartGraph(token: user.fitbitToken),
-                          FitStepGraph(token: user.fitbitToken),
-                          FitSleepGraph(token: user.fitbitToken),
-                          FitWeightGraph(token: user.fitbitToken),
-                        ],
-                      )
-                  ),
-
-                  SizedBox(
-                    height: 5,
-                  ),
-                  //scroll bar
-                  SmoothPageIndicator(
-                    controller: _controller,
-                    count: 4,
-                    effect: ExpandingDotsEffect(
-                      activeDotColor: Colors.grey.shade600,
-                      dotHeight: 5,
-                      dotWidth: 5,
                     ),
                   ),
-
-                  SizedBox(
-                    height: 20,
-                  ),
-                  //widget
-                ],
-              ),
-            ),
-          ),
-        )
+                )
+            );
+          }
+          else{
+            return const Scaffold(
+                body:Center(child: CircularProgressIndicator())
+            );//
+          }
+        }
     );
+
   }
   Widget listViewItem(int index) {
     return Container(
@@ -779,6 +815,7 @@ class WidgetData {
   final String x;
   final double y;
 }
+
 class Message{
   final String status;
   final String score;
@@ -804,5 +841,21 @@ class Message1{
     required this.mood,
     required this.dateandtime,
     required this.color,
+  });
+}
+
+class userData{
+  final String name;
+  final String age;
+  final String token;
+  final String gender;
+  final String image;
+
+  const userData({
+    required this.name,
+    required this.age,
+    required this.token,
+    required this.gender,
+    required this.image,
   });
 }

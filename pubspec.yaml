@@ -40,6 +40,8 @@ dependencies:
   percent_indicator: ^4.0.1
   diamond_bottom_bar: ^1.0.0
   bottom_navy_bar: ^6.0.0
+  mongo_dart: ^0.8.0
+  jwt_decode: ^0.3.1
 
 
 dev_dependencies:
@@ -70,6 +72,7 @@ flutter:
      - assets/
      - assets/emoticons/
      - assets/profile/
+     - assets/profile/pfphani.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

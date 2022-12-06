@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.Doctor_App">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="doctor_app"
         android:name="${applicationName}"
