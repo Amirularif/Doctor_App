@@ -13,6 +13,6 @@ class UserPreferences {
     gender:
     'Female',
     fitbitToken:
-    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzhUUVQiLCJzdWIiOiI5WjdQNkYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc2V0IHJhY3QgcndlaSByaHIgcnBybyByc2xlIiwiZXhwIjoxNjY4MzcwMjY5LCJpYXQiOjE2NjgyODM5MDJ9.MGbAX0oq6W2MgDyZS6Gi5FuqCA-tjp7cj4P2UGuO2As',
+    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzhUUVQiLCJzdWIiOiI5WjdQNkYiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyYWN0IHJzZXQgcm94eSByd2VpIHJociBycHJvIHJzbGUiLCJleHAiOjE2NzI4NDMyMzUsImlhdCI6MTY3MDI1MTIzNX0.gvKytEg6inAVKoYziOub--QQ__3Cr65K6sM7aUelnB0',
   );
 }

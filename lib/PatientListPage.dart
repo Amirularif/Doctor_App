@@ -17,6 +17,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:intl/intl.dart';
 import '../bottombar.dart';
 import '../dashboard.dart';
+import 'ChatPage.dart';
+import 'ServerDB/DBProfile.dart';
 
 class PatientListPage extends StatefulWidget {
   const PatientListPage({Key? key}) : super(key: key);
@@ -84,11 +86,25 @@ class _PatientListPageState extends State<PatientListPage> {
 
   void initState(){
     date = dateinit();
+    DBLoad();
+  }
+
+  //server
+
+  var logList = [];
+  String recent = "01/01/2022";
+  Future DBLoad() async{
+    logList = await ProfileData.connect("P1001");
+    //int last = logList.length - 1;
+    recent = logList[0]["Reg"];
+    print(recent);
   }
 
   @override
-    Widget build(BuildContext context) {
-      return Scaffold(
+  Widget build(BuildContext context) {
+
+
+    return Scaffold(
           backgroundColor: Colors.grey.shade100,
           bottomNavigationBar: BottomNavyBar(
             selectedIndex: selectedindex,
@@ -218,8 +234,8 @@ class _PatientListPageState extends State<PatientListPage> {
                 )
               )
             );
-          }
-        }
+  }
+}
 class Patient{
   final String name;
   final String fitbitid;

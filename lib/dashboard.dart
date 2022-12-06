@@ -426,19 +426,28 @@ class _DashboardState extends State<Dashboard> {
                     height: 5,
                   ),
                   //scroll bar
-                  SmoothPageIndicator(
-                    controller: _controller,
-                    count: 4,
-                    effect: ExpandingDotsEffect(
-                      activeDotColor: Colors.grey.shade600,
-                      dotHeight: 5,
-                      dotWidth: 5,
+                          SmoothPageIndicator(
+                            controller: _controller,
+                            count: 4,
+                            effect: ExpandingDotsEffect(
+                              activeDotColor: Colors.grey.shade600,
+                              dotHeight: 5,
+                              dotWidth: 5,
+                            ),
+                          ),
+                        ],),
                     ),
                   ),
-                ],),
-            ),
-          ),
-        ),
+                ),
+              ),
+            );
+          }
+          else{
+            return const Scaffold(
+                body:Center(child: CircularProgressIndicator())
+            );//
+          }
+        }
     );
   }
   void onPressed(index) {
