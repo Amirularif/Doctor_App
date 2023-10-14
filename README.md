@@ -1,6 +1,6 @@
-# Doctor App
+# FYP: Doctor App developed using Flutter IDE 
 
-Konkuk University 2nd Semester Final Year Project.
+Konkuk University 2nd Semester Final Year Project. Doctor App is an application developed for doctors to monitor and send feedback to students who are in need of mental health advice. This application also uses REST API to update the biometric information tracked using FitBit to the doctors for analysis.
 
 ## Getting Started
 
