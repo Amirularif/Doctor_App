@@ -5,13 +5,13 @@ Konkuk University 2nd Semester Final Year Project. Doctor App is an application 
 > [!WARNING]
 > This Project is completed for University purposes. Feel free to use it for educational purposes. Not for business purposes!
 
-# Development Programs, DB and language used
+# Development Programs, DB, and language used
 
 - Flutter IDE
 * Dart language
 + Adobe XD
-+ Firebase
-+ MongoDB
+- Firebase
+* MongoDB
 + REST API
 
 ## Getting Started
