@@ -35,8 +35,8 @@ Konkuk University 2nd Semester Final Year Project. Doctor App is an application 
 # Screenshots
 
 ### SignUp Page & Login Page
-<img src="https://github.com/Amirularif/Doctor_App/assets/57553676/61d0cca0-a8d4-4c26-b17b-1e2aad35df6e" width="900" height="650">
-<img src="https://github.com/Amirularif/Doctor_App/assets/57553676/20a63a3b-dfe8-43c0-9b91-7782dfcd5af7" width="900" height="650">
+<img src="https://github.com/Amirularif/Doctor_App/assets/57553676/61d0cca0-a8d4-4c26-b17b-1e2aad35df6e" width="380" height="250">
+<img src="https://github.com/Amirularif/Doctor_App/assets/57553676/20a63a3b-dfe8-43c0-9b91-7782dfcd5af7" width="380" height="250">
 
 ### Patient list Page
 <img src="https://github.com/Amirularif/RelaxifyApp/assets/57553676/3c4dd1c4-4268-43fe-966f-1b4433ecf3dc" width="225" height="450">
