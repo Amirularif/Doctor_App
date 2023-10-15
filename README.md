@@ -22,3 +22,7 @@ Konkuk University 2nd Semester Final Year Project. Doctor App is an application 
 
 👦 Back-end: [Nik Amir Zakwan](https://github.com/astralkizuna/)
 
+# Functions
+
+
+
