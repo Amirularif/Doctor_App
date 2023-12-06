@@ -7,7 +7,7 @@ Konkuk University 2nd Semester Final Year Project. Doctor App is an application 
 
 # Development Programs, DB, and language used
 
-- Flutter Framework
+- Flutter framework
 * Dart language
 + Adobe XD
 - Firebase
